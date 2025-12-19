@@ -1,8 +1,10 @@
 export const trackEvent = (action, label) => {
-  if (typeof window !== "undefined" && window.gtag) {
-    window.gtag("event", action, {
-      event_category: "engagement",
-      event_label: label,
-    });
-  }
+  if (typeof window === "undefined") return;
+
+  window.dataLayer = window.dataLayer || [];
+
+  window.dataLayer.push({
+    event: action,
+    event_label: label,
+  });
 };
