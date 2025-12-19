@@ -1,10 +1,8 @@
 export const trackEvent = (action, label) => {
   if (typeof window === "undefined") return;
+  if (!window.gtag) return;
 
-  window.dataLayer = window.dataLayer || [];
-
-  window.dataLayer.push({
-    event: action,
+  window.gtag("event", action, {
     event_label: label,
   });
 };
