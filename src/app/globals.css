@@ -1,0 +1,154 @@
+@import "tailwindcss";
+
+/* =================================================
+   GYM DESIGN SYSTEM — PROFESSIONAL & SELLABLE
+   ================================================= */
+:root {
+  /* ================= BASE ================= */
+  --background: #f8fafc;              /* off-white, not pure */
+  --foreground: #0f172a;              /* deep slate */
+
+  /* ================= BRAND ================= */
+  --primary: #16a34a;                 /* athletic green */
+  --primary-foreground: #ffffff;
+
+  --secondary: #dcfce7;
+  --secondary-foreground: #14532d;
+
+  /* ================= TEXT ================= */
+  --text-primary: var(--foreground);
+  --text-muted: #475569;              /* darker than before */
+  --text-inverse: #ffffff;
+
+  /* ================= ACTIONS ================= */
+  --action-primary: var(--primary);
+  --action-primary-hover: #15803d;
+  --action-secondary: #22c55e;
+
+  /* ================= SURFACES ================= */
+  --surface-page: var(--background);
+  --surface-section: #f1f5f9;         /* visible separation */
+  --surface-card: #ffffff;
+  --surface-soft: #e5e7eb;
+
+  /* ================= BORDERS ================= */
+  --border: #cbd5e1;
+  --border-strong: #94a3b8;
+
+  /* ================= RADIUS ================= */
+  --radius-sm: 0.5rem;
+  --radius-md: 0.75rem;
+  --radius-lg: 1rem;
+  --radius-xl: 1.25rem;
+  --radius-pill: 9999px;
+
+  /* ================= SHADOWS ================= */
+  --shadow-sm: 0 1px 3px rgba(0,0,0,0.06);
+  --shadow-md: 0 6px 20px rgba(0,0,0,0.10);
+  --shadow-lg: 0 14px 40px rgba(0,0,0,0.14);
+
+  /* ================= CTA ================= */
+  --cta-bg: var(--action-primary);
+  --cta-text: var(--text-inverse);
+  --cta-hover: var(--action-primary-hover);
+  --cta-shadow: 0 10px 30px rgba(22,163,74,0.35);
+
+  /* ================= FEEDBACK ================= */
+  --success: #16a34a;
+  --warning: #f59e0b;
+  --error: #dc2626;
+
+  /* ================= MOTION ================= */
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --duration-fast: 140ms;
+  --duration-normal: 260ms;
+  --duration-slow: 420ms;
+}
+
+/* =================================================
+   TAILWIND THEME MAPPING
+   ================================================= */
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+
+  --color-muted: var(--surface-section);
+  --color-border: var(--border);
+
+  --font-sans: var(--font-geist-sans, system-ui, sans-serif);
+  --font-mono: var(--font-geist-mono, monospace);
+}
+
+/* =================================================
+   DARK MODE (SERIOUS GYM)
+   ================================================= */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #020617;
+    --foreground: #f8fafc;
+
+    --surface-page: #020617;
+    --surface-section: #020617;
+    --surface-card: #020617;
+    --surface-soft: #020617;
+
+    --border: #1f2937;
+    --border-strong: #374151;
+
+    --text-muted: #9ca3af;
+  }
+}
+
+/* =================================================
+   BASE RESET
+   ================================================= */
+body {
+  background: var(--surface-page);
+  color: var(--text-primary);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* =================================================
+   SYSTEM UI HELPERS (USE GRADUALLY)
+   ================================================= */
+
+/* Card */
+.ui-card {
+  background: var(--surface-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-sm);
+}
+
+/* Section */
+.ui-section {
+  background: var(--surface-section);
+}
+
+/* Primary CTA */
+.ui-cta {
+  background: var(--cta-bg);
+  color: var(--cta-text);
+  border-radius: var(--radius-pill);
+  box-shadow: var(--cta-shadow);
+  transition: transform var(--duration-normal) var(--ease-out),
+              box-shadow var(--duration-normal) var(--ease-out),
+              background var(--duration-normal) var(--ease-out);
+}
+.ui-cta:hover {
+  background: var(--cta-hover);
+  transform: translateY(-1px);
+  box-shadow: 0 14px 45px rgba(22,163,74,0.45);
+}
+
+/* Muted text */
+.ui-muted {
+  color: var(--text-muted);
+}
