@@ -1,11 +1,16 @@
 // NO "use client"
 // PURE SERVER COMPONENT
 
+import { getActiveOffer } from "@/app/lib/offerConfig";
+
 export default function Offer() {
   const whatsappNumber = "918279898128";
 
+  // 🔥 ACTIVE OFFER (single source of truth)
+  const offer = getActiveOffer();
+
   const offerMessage = encodeURIComponent(
-    "Hi, I want to join the ₹999 trial.\nSource: Offer"
+    `Hi, I want to join the ${offer.whatsappText}`
   );
 
   const whatsappLink = `https://wa.me/${whatsappNumber}?text=${offerMessage}`;
@@ -39,11 +44,12 @@ export default function Offer() {
                 Try IronForge Fitness for 3 Days
               </h2>
 
+              {/* MOBILE PRICE */}
               <p
                 className="mt-2 sm:hidden text-sm font-semibold"
                 style={{ color: "var(--action-primary)" }}
               >
-                ₹999 · One-time trial
+                {offer.label}
               </p>
 
               {/* BENEFITS */}
@@ -56,7 +62,7 @@ export default function Offer() {
                 <li>• Experience the gym before committing</li>
               </ul>
 
-              {/* PRESSURE REMOVAL — VISUALLY ATTACHED TO CTA */}
+              {/* PRESSURE REMOVAL */}
               <p
                 className="mt-3 mb-1 text-xs leading-snug"
                 style={{ color: "var(--text-muted)" }}
@@ -72,7 +78,7 @@ export default function Offer() {
                   target="_blank"
                   rel="noopener noreferrer"
                   data-event="whatsapp_click"
-                  data-label="offer_cta"
+                  data-label={`offer_cta_${offer.id}`}
                   className="
                     inline-flex items-center justify-center
                     w-full sm:w-auto
@@ -87,7 +93,7 @@ export default function Offer() {
                     color: "var(--action-primary)",
                   }}
                 >
-                  Claim ₹999 Trial on WhatsApp
+                  Claim {offer.whatsappText} on WhatsApp
                 </a>
               </div>
             </div>
@@ -113,7 +119,7 @@ export default function Offer() {
                 className="mt-1 text-3xl font-semibold"
                 style={{ color: "var(--action-primary)" }}
               >
-                ₹999
+                ₹{offer.price ?? offer.label.match(/\d+/)?.[0]}
               </p>
 
               <p

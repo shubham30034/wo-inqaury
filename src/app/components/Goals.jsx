@@ -2,9 +2,13 @@
 
 import { motion } from "framer-motion";
 import { trackEvent } from "@/app/lib/analytics";
+import { getActiveOffer } from "@/app/lib/offerConfig";
 
 export default function Goals() {
   const whatsappNumber = "918279898128";
+
+  // 🔥 ACTIVE OFFER (single source of truth)
+  const offer = getActiveOffer();
 
   const buildLink = (goal) => {
     let goalLine = "";
@@ -21,9 +25,10 @@ export default function Goals() {
       goalLine = "My goal is overall fitness and staying active.";
     }
 
-    const msg = `Hi, I want to join the ₹999 trial.
+    const msg = `Hi, I want to join the ${offer.whatsappText}.
 ${goalLine}
-When is the best time to visit today?`;
+When is the best time to visit today?
+Source: Goals`;
 
     return `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(msg)}`;
   };
@@ -44,7 +49,7 @@ When is the best time to visit today?`;
   ];
 
   const labelFromGoal = (goal) =>
-    `goal_${goal.toLowerCase().replace(/\s+/g, "_")}`;
+    `goal_${goal.toLowerCase().replace(/\s+/g, "_")}_${offer.id}`;
 
   const container = {
     hidden: {},
@@ -175,7 +180,7 @@ When is the best time to visit today?`;
         </motion.div>
 
         <p className="mt-6 sm:mt-8 text-xs text-center text-muted-foreground">
-          No forms · No calls · WhatsApp only
+          {offer.label} · No forms · No calls · WhatsApp only
         </p>
       </div>
     </section>

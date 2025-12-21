@@ -1,11 +1,16 @@
 import Image from "next/image";
 import HeroCTA from "./HeroCTA";
+import { getActiveOffer } from "@/app/lib/offerConfig";
 
 export default function Hero() {
   const whatsappNumber = "918279898128";
 
+  // 🔥 ACTIVE OFFER (single source of truth)
+  const offer = getActiveOffer();
+
   const heroMessage = encodeURIComponent(
-    "Hi, I want to join the ₹999 trial.\nWhen is the best time to visit today?"
+    `Hi, I want to join the ${offer.whatsappText}.
+When is the best time to visit today?`
   );
 
   const whatsappLink = `https://wa.me/${whatsappNumber}?text=${heroMessage}`;
@@ -46,7 +51,7 @@ export default function Hero() {
               className="mt-2 text-xs"
               style={{ color: "var(--text-muted)" }}
             >
-              ₹999 · 3 Day Trial · WhatsApp only
+              {offer.label} · WhatsApp only
             </p>
           </div>
 
@@ -68,7 +73,7 @@ export default function Hero() {
                 color: "var(--action-primary)",
               }}
             >
-              ₹999 · 3 Day Trial
+              {offer.label}
             </div>
           </div>
         </div>
