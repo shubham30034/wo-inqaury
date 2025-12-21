@@ -6,14 +6,19 @@ import { getActiveOffer } from "@/app/lib/offerConfig";
 export default function Offer() {
   const whatsappNumber = "918279898128";
 
-  // 🔥 ACTIVE OFFER (single source of truth)
   const offer = getActiveOffer();
 
-  const offerMessage = encodeURIComponent(
-    `Hi, I want to join the ${offer.whatsappText}`
-  );
+  // 🔒 STATIC URGENCY
+  const URGENCY_TEXT = "Limited seats this week";
 
-  const whatsappLink = `https://wa.me/${whatsappNumber}?text=${offerMessage}`;
+  // 🔒 MESSAGE SENT TO OWNER (NOT SHOWN ON BUTTON)
+  const WHATSAPP_MESSAGE =  `Hi, I want to start the ${offer.tryoutDays}-day free trial.
+I understand the membership continues at ₹${offer.price}/month after the trial.
+When is the best time to visit`;
+
+  const whatsappLink = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(
+    WHATSAPP_MESSAGE
+  )}`;
 
   return (
     <section
@@ -37,19 +42,27 @@ export default function Offer() {
                 className="text-[11px] sm:text-xs uppercase tracking-widest"
                 style={{ color: "var(--text-muted)" }}
               >
-                Trial Offer
+                Starter Membership
               </p>
 
               <h2 className="mt-2 sm:mt-3 text-xl sm:text-3xl font-semibold">
-                Try IronForge Fitness for 3 Days
+                Join IronForge Fitness at ₹{offer.price}
               </h2>
+
+              {/* URGENCY */}
+              <p
+                className="mt-2 text-xs font-medium uppercase tracking-wide"
+                style={{ color: "var(--action-primary)" }}
+              >
+                {URGENCY_TEXT}
+              </p>
 
               {/* MOBILE PRICE */}
               <p
                 className="mt-2 sm:hidden text-sm font-semibold"
                 style={{ color: "var(--action-primary)" }}
               >
-                {offer.label}
+                ₹{offer.price} · Starter Plan
               </p>
 
               {/* BENEFITS */}
@@ -57,9 +70,9 @@ export default function Offer() {
                 className="mt-4 space-y-2 text-sm sm:text-base"
                 style={{ color: "var(--text-muted)" }}
               >
-                <li>• Full gym access for 3 days</li>
-                <li>• Trainer guidance included during trial</li>
-                <li>• Experience the gym before committing</li>
+                <li>• ₹{offer.price} starter membership</li>
+                <li>• Full gym access for {offer.tryoutDays} days</li>
+                <li>• Continue only if you like it</li>
               </ul>
 
               {/* PRESSURE REMOVAL */}
@@ -67,11 +80,11 @@ export default function Offer() {
                 className="mt-3 mb-1 text-xs leading-snug"
                 style={{ color: "var(--text-muted)" }}
               >
-                No pressure to join.<br />
-                Try first. Decide later.
+                No long-term commitment.<br />
+                Try the gym first. Decide later.
               </p>
 
-              {/* CTA */}
+              {/* CTA BUTTON (SHORT & CLEAN) */}
               <div className="mt-3">
                 <a
                   href={whatsappLink}
@@ -93,7 +106,7 @@ export default function Offer() {
                     color: "var(--action-primary)",
                   }}
                 >
-                  Claim {offer.whatsappText} on WhatsApp
+                  Start ₹{offer.price} Starter Plan
                 </a>
               </div>
             </div>
@@ -112,21 +125,28 @@ export default function Offer() {
                 className="text-sm"
                 style={{ color: "var(--text-muted)" }}
               >
-                3-Day Trial
+                Starter Price
               </p>
 
               <p
                 className="mt-1 text-3xl font-semibold"
                 style={{ color: "var(--action-primary)" }}
               >
-                ₹{offer.price ?? offer.label.match(/\d+/)?.[0]}
+                ₹{offer.price}
               </p>
 
               <p
                 className="mt-1 text-xs"
                 style={{ color: "var(--text-muted)" }}
               >
-                Limited slots each week
+                Includes {offer.tryoutDays}-day try-out window
+              </p>
+
+              <p
+                className="mt-2 text-xs font-medium"
+                style={{ color: "var(--action-primary)" }}
+              >
+                {URGENCY_TEXT}
               </p>
             </div>
 

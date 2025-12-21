@@ -26,7 +26,7 @@ export default function HeroCTA({ whatsappLink, variant }) {
         ${isMobile ? "w-full py-4 text-base" : "px-8 py-4 whitespace-nowrap"}
       `}
     >
-      Start on WhatsApp
+      Start Free Trial on Whatsapp
     </a>
   );
 }

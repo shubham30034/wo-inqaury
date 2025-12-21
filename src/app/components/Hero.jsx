@@ -4,13 +4,12 @@ import { getActiveOffer } from "@/app/lib/offerConfig";
 
 export default function Hero() {
   const whatsappNumber = "918279898128";
-
-  // 🔥 ACTIVE OFFER (single source of truth)
   const offer = getActiveOffer();
 
   const heroMessage = encodeURIComponent(
-    `Hi, I want to join the ${offer.whatsappText}.
-When is the best time to visit today?`
+    `Hi, I want to start the ${offer.tryoutDays}-day free trial.
+I understand the membership continues at ₹${offer.price}/month after the trial.
+When is the best time to visit `
   );
 
   const whatsappLink = `https://wa.me/${whatsappNumber}?text=${heroMessage}`;
@@ -18,98 +17,87 @@ When is the best time to visit today?`
   return (
     <section
       id="hero-section"
-      className="pt-10 pb-10 sm:pt-20 sm:pb-16"
+      className="pt-8 pb-10 sm:pt-24 sm:pb-24"
       style={{ background: "var(--background)" }}
     >
-      <div className="mx-auto max-w-6xl px-4 sm:px-6 grid gap-8 md:grid-cols-2 items-center">
+      <div className="mx-auto max-w-6xl px-4 sm:px-6 grid gap-6 sm:gap-10 md:grid-cols-2 items-center">
 
-        {/* LEFT */}
+        {/* LEFT — CONTENT */}
         <div className="text-center md:text-left">
+
+          {/* EYEBROW — BRAND PRESENCE */}
           <p
-            className="text-[11px] sm:text-xs uppercase tracking-widest"
+            className="text-[10px] sm:text-xs uppercase tracking-widest"
             style={{ color: "var(--text-muted)" }}
           >
-            WhatsApp Inquiry Engine
+            IronForge Fitness · WhatsApp Inquiry
           </p>
 
-          <h1 className="mt-2 sm:mt-4 text-2xl sm:text-4xl md:text-6xl font-semibold">
-            Train at IronForge Fitness
+          {/* HEADLINE */}
+          <h1
+            className="mt-1.5 sm:mt-4 text-[28px] sm:text-5xl md:text-6xl font-semibold leading-tight tracking-tight"
+            style={{ color: "var(--foreground)" }}
+          >
+            Serious Training Starts Here
           </h1>
 
+          {/* SUBLINE — CLEAR, NON-REPETITIVE */}
           <p
-            className="mt-2 text-sm sm:text-base"
-            style={{ color: "var(--text-muted)" }}
+            className="mt-2 sm:mt-3 text-sm sm:text-base font-medium"
+            style={{ color: "var(--action-primary)" }}
           >
-            For people serious about results
+            {offer.tryoutDays}-Day Free Trial · Membership continues at ₹{offer.price}/month
           </p>
 
-          {/* MOBILE CTA */}
-          <div className="mt-5 sm:hidden">
-            <HeroCTA whatsappLink={whatsappLink} variant="mobile" />
-
-            <p
-              className="mt-2 text-xs"
-              style={{ color: "var(--text-muted)" }}
-            >
-              {offer.label} · WhatsApp only
-            </p>
+          {/* CTA — INTENT CLEAR */}
+          <div className="mt-4 sm:mt-8 flex justify-center md:justify-start">
+            <HeroCTA
+              whatsappLink={whatsappLink}
+              variant="primary"
+              label={`Start ${offer.tryoutDays}-Day Free Trial on WhatsApp`}
+            />
           </div>
 
+          {/* TRUST FILTER — SHARP */}
           <p
-            className="mt-4 sm:mt-6 max-w-md mx-auto md:mx-0 text-sm sm:text-lg"
+            className="mt-4 sm:mt-8 text-sm sm:text-base font-medium"
+            style={{ color: "var(--foreground)" }}
+          >
+            IronForge Fitness is for people who train consistently — not casual drop-ins.
+          </p>
+
+          {/* FRICTION KILL */}
+          <p
+            className="mt-1 sm:mt-2 text-xs sm:text-sm"
             style={{ color: "var(--text-muted)" }}
           >
             No forms. No calls. No sales pressure.
           </p>
-
-          {/* DESKTOP CTA */}
-          <div className="hidden sm:flex mt-8 gap-4 justify-center md:justify-start">
-            <HeroCTA whatsappLink={whatsappLink} variant="desktop" />
-
-            <div
-              className="px-6 py-3 text-sm border rounded-[var(--radius-lg)]"
-              style={{
-                borderColor: "var(--action-primary)",
-                color: "var(--action-primary)",
-              }}
-            >
-              {offer.label}
-            </div>
-          </div>
         </div>
 
-        {/* RIGHT IMAGE — FINAL POLISH */}
+        {/* RIGHT — IMAGE */}
         <div
           className="
             relative w-full
             aspect-[3/4] md:aspect-[4/5]
             overflow-hidden
-            transition-transform duration-700 ease-out
-            scale-[1.02]
-            md:hover:scale-[1.0]
+            rounded-[var(--radius-xl)]
           "
-          style={{ borderRadius: "var(--radius-xl)" }}
         >
-          {/* soft light veil to match light theme */}
           <div
             className="absolute inset-0 z-10 pointer-events-none"
             style={{
               background:
-                "linear-gradient(180deg, rgba(248,250,252,0.55) 0%, rgba(248,250,252,0.15) 40%, rgba(248,250,252,0) 100%)",
+                "linear-gradient(180deg, rgba(0,0,0,0.35) 0%, rgba(0,0,0,0.15) 40%, rgba(0,0,0,0) 100%)",
             }}
           />
 
           <Image
             src="/gym-hero-v2.png"
-            alt="Gym training"
+            alt="IronForge Fitness gym interior"
             fill
             priority
-            className="
-              object-cover
-              brightness-[1.12]
-              contrast-[0.95]
-              saturate-[0.9]
-            "
+            className="object-cover"
           />
         </div>
 

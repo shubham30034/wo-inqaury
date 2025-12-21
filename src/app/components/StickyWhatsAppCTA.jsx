@@ -48,7 +48,7 @@ export default function StickyWhatsAppCTA() {
         transition: { duration: 0.45, ease: "easeInOut" },
       });
 
-      setTimeout(pulse, 6000); // ⏱ every 6s
+      setTimeout(pulse, 6000);
     };
 
     pulse();
@@ -59,9 +59,9 @@ export default function StickyWhatsAppCTA() {
   }, [show, controls, shouldReduceMotion]);
 
   const stickyMessage = encodeURIComponent(
-    `Hi, I want to join the ${offer.whatsappText}.
-When is the best time to visit today?
-Source: Sticky`
+    `Hi, I want to start the ${offer.tryoutDays}-day free trial.
+I understand the membership continues at ₹${offer.price}/month after the trial.
+When is the best time to visit?`
   );
 
   return (
@@ -97,14 +97,9 @@ Source: Sticky`
             "0 12px 28px rgba(22,163,74,0.35), inset 0 -2px 0 rgba(0,0,0,0.18)",
         }}
       >
-        {/* PRICE */}
-        <span className="text-lg font-extrabold leading-none">
-          ₹{offer.price ?? offer.label.match(/\d+/)?.[0]}
-        </span>
-
-        {/* LABEL */}
-        <span className="text-[11px] tracking-wide opacity-90">
-          TRIAL
+        {/* CTA TEXT ONLY */}
+        <span className="text-[12px] font-semibold leading-tight text-center px-1">
+          Start<br />Free Trial
         </span>
       </motion.a>
     </motion.div>

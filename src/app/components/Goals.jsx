@@ -25,10 +25,9 @@ export default function Goals() {
       goalLine = "My goal is overall fitness and staying active.";
     }
 
-    const msg = `Hi, I want to join the ${offer.whatsappText}.
+    const msg = `Hi, I want to Start the ${offer.tryoutDays}-day free trial
 ${goalLine}
-When is the best time to visit today?
-Source: Goals`;
+When is the best time to visit ?`;
 
     return `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(msg)}`;
   };
