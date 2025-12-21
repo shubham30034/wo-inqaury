@@ -6,12 +6,14 @@ import Footer from "./components/Footer";
 import StickyWhatsAppCTA from "./components/StickyWhatsAppCTA";
 import PhotoSection from "./components/PhotoSection";
 import GoogleReviews from "./components/GoogleReviews";
+import WhoThisIsFor from "./components/WhoThisIsFor";
 
 export default function Home() {
   return (
     <main className="bg-background text-foreground">
       <Hero />
       <Offer />
+      <WhoThisIsFor/>
       <Goals />
       <GoogleReviews />
       <PhotoSection />

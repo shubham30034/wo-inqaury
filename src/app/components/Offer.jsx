@@ -46,24 +46,27 @@ export default function Offer() {
                 ₹999 · One-time trial
               </p>
 
+              {/* BENEFITS */}
               <ul
                 className="mt-4 space-y-2 text-sm sm:text-base"
                 style={{ color: "var(--text-muted)" }}
               >
                 <li>• Full gym access for 3 days</li>
-                <li>• One trainer interaction included</li>
+                <li>• Trainer guidance included during trial</li>
                 <li>• Experience the gym before committing</li>
               </ul>
 
+              {/* PRESSURE REMOVAL — VISUALLY ATTACHED TO CTA */}
               <p
-                className="mt-4 text-xs"
+                className="mt-3 mb-1 text-xs leading-snug"
                 style={{ color: "var(--text-muted)" }}
               >
-                No calls · No sales pressure · Decide at your own pace
+                No pressure to join.<br />
+                Try first. Decide later.
               </p>
 
               {/* CTA */}
-              <div className="mt-6">
+              <div className="mt-3">
                 <a
                   href={whatsappLink}
                   target="_blank"

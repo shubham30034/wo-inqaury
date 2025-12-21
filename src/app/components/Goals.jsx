@@ -7,10 +7,23 @@ export default function Goals() {
   const whatsappNumber = "918279898128";
 
   const buildLink = (goal) => {
+    let goalLine = "";
+
+    if (goal === "Fat Loss") {
+      goalLine = "My goal is fat loss and improving stamina.";
+    }
+
+    if (goal === "Muscle Gain") {
+      goalLine = "My goal is muscle gain and strength training.";
+    }
+
+    if (goal === "General Fitness") {
+      goalLine = "My goal is overall fitness and staying active.";
+    }
+
     const msg = `Hi, I want to join the ₹999 trial.
-Goal: ${goal}
-I’m ready to start this week.
-Source: Goals`;
+${goalLine}
+When is the best time to visit today?`;
 
     return `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(msg)}`;
   };
@@ -32,8 +45,6 @@ Source: Goals`;
 
   const labelFromGoal = (goal) =>
     `goal_${goal.toLowerCase().replace(/\s+/g, "_")}`;
-
-  /* ================= PRO SCROLL ANIMATION ================= */
 
   const container = {
     hidden: {},
@@ -63,7 +74,6 @@ Source: Goals`;
   return (
     <section className="py-10 sm:py-20">
       <div className="mx-auto max-w-5xl px-4 sm:px-6">
-        {/* HEADING */}
         <h2 className="text-lg sm:text-2xl font-semibold text-center">
           What’s your main training goal?
         </h2>
@@ -76,7 +86,7 @@ Source: Goals`;
           This helps us respond faster and more accurately
         </p>
 
-        {/* ================= MOBILE LIST ================= */}
+        {/* MOBILE */}
         <motion.div
           className="mt-6 space-y-3 sm:hidden"
           variants={container}
@@ -121,14 +131,9 @@ Source: Goals`;
           ))}
         </motion.div>
 
-        {/* ================= DESKTOP CARDS ================= */}
+        {/* DESKTOP */}
         <motion.div
-          className="
-            hidden sm:grid
-            mt-10
-            grid gap-5
-            sm:grid-cols-2 lg:grid-cols-3
-          "
+          className="hidden sm:grid mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-3"
           variants={container}
           initial="hidden"
           whileInView="show"
@@ -169,7 +174,6 @@ Source: Goals`;
           ))}
         </motion.div>
 
-        {/* FOOTNOTE */}
         <p className="mt-6 sm:mt-8 text-xs text-center text-muted-foreground">
           No forms · No calls · WhatsApp only
         </p>

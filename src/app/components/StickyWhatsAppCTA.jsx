@@ -65,7 +65,7 @@ export default function StickyWhatsAppCTA() {
     >
       <motion.a
         href={`https://wa.me/918279898128?text=${encodeURIComponent(
-          "Hi, I want to join the ₹999 trial.\nSource: Sticky Urgency CTA"
+          "Hi, I want to join the ₹999 trial.\nWhen is the best time to visit today?\nSource: Sticky"
         )}`}
         target="_blank"
         rel="noopener noreferrer"
