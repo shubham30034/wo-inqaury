@@ -9,12 +9,12 @@ import GoogleReviews from "./components/GoogleReviews";
 
 export default function Home() {
   return (
-    <main className="bg-background text-foreground overflow-x-hidden">
+    <main className="bg-background text-foreground">
       <Hero />
       <Offer />
       <Goals />
-      <GoogleReviews/>
-      <PhotoSection/>
+      <GoogleReviews />
+      <PhotoSection />
       <Location />
       <Footer />
       <StickyWhatsAppCTA />

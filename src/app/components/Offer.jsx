@@ -1,7 +1,5 @@
-"use client";
-
-import { motion } from "framer-motion";
-import { trackEvent } from "@/app/lib/analytics";
+// NO "use client"
+// PURE SERVER COMPONENT
 
 export default function Offer() {
   const whatsappNumber = "918279898128";
@@ -17,16 +15,7 @@ export default function Offer() {
       className="py-10 sm:py-20"
       style={{ background: "var(--surface-section)" }}
     >
-      <motion.div
-        initial={{ opacity: 0, y: 10 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        transition={{
-          duration: 0.45,
-          ease: [0.22, 1, 0.36, 1],
-        }}
-        className="mx-auto max-w-5xl px-4 sm:px-6"
-      >
+      <div className="mx-auto max-w-5xl px-4 sm:px-6">
         <div
           className="border px-5 py-6 sm:px-8 sm:py-10"
           style={{
@@ -73,39 +62,26 @@ export default function Offer() {
                 No calls · No sales pressure · Decide at your own pace
               </p>
 
-              {/* ===== OFFER CTA (OUTLINE STYLE) ===== */}
+              {/* CTA */}
               <div className="mt-6">
                 <a
                   href={whatsappLink}
                   target="_blank"
                   rel="noopener noreferrer"
-                  onClick={() =>
-                    trackEvent("whatsapp_click", "offer_cta")
-                  }
+                  data-event="whatsapp_click"
+                  data-label="offer_cta"
                   className="
                     inline-flex items-center justify-center
                     w-full sm:w-auto
                     px-8 py-4
                     text-base font-semibold
-                    transition
                     rounded-[var(--radius-lg)]
                     border
-                    bg-[var(--surface-card)]
+                    transition-colors
                   "
                   style={{
                     borderColor: "var(--action-primary)",
                     color: "var(--action-primary)",
-                  }}
-                  onMouseEnter={(e) => {
-                    e.currentTarget.style.background =
-                      "var(--action-primary)";
-                    e.currentTarget.style.color = "#ffffff";
-                  }}
-                  onMouseLeave={(e) => {
-                    e.currentTarget.style.background =
-                      "var(--surface-card)";
-                    e.currentTarget.style.color =
-                      "var(--action-primary)";
                   }}
                 >
                   Claim ₹999 Trial on WhatsApp
@@ -147,7 +123,7 @@ export default function Offer() {
 
           </div>
         </div>
-      </motion.div>
+      </div>
     </section>
   );
 }
