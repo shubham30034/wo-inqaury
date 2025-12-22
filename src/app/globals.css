@@ -17,7 +17,7 @@
 
   /* ================= TEXT ================= */
   --text-primary: var(--foreground);
-  --text-muted: #475569;              /* darker than before */
+  --text-muted: #64748b;              /* 👈 improved readability */
   --text-inverse: #ffffff;
 
   /* ================= ACTIONS ================= */
@@ -138,10 +138,12 @@ body {
   color: var(--cta-text);
   border-radius: var(--radius-pill);
   box-shadow: var(--cta-shadow);
-  transition: transform var(--duration-normal) var(--ease-out),
-              box-shadow var(--duration-normal) var(--ease-out),
-              background var(--duration-normal) var(--ease-out);
+  transition:
+    transform var(--duration-normal) var(--ease-out),
+    box-shadow var(--duration-normal) var(--ease-out),
+    background var(--duration-normal) var(--ease-out);
 }
+
 .ui-cta:hover {
   background: var(--cta-hover);
   transform: translateY(-1px);

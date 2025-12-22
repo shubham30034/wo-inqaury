@@ -7,9 +7,8 @@ export default function Hero() {
   const offer = getActiveOffer();
 
   const heroMessage = encodeURIComponent(
-    `Hi, I want to start the ${offer.tryoutDays}-day free trial.
-I understand the membership continues at ₹${offer.price}/month after the trial.
-When is the best time to visit `
+    `Hi, I want to start the ${offer.trialDays}-day free trial.
+When is the best time to visit?`
   );
 
   const whatsappLink = `https://wa.me/${whatsappNumber}?text=${heroMessage}`;
@@ -17,15 +16,23 @@ When is the best time to visit `
   return (
     <section
       id="hero-section"
-      className="pt-8 pb-10 sm:pt-24 sm:pb-24"
+      className="pt-8 pb-10 sm:pt-12 sm:pb-20 lg:pt-16 lg:pb-24"
       style={{ background: "var(--background)" }}
     >
-      <div className="mx-auto max-w-6xl px-4 sm:px-6 grid gap-6 sm:gap-10 md:grid-cols-2 items-center">
-
+      <div
+        className="
+          mx-auto max-w-6xl
+          px-4 sm:px-6
+          grid
+          gap-6 sm:gap-8 lg:gap-10
+          md:grid-cols-2
+          items-center
+        "
+      >
         {/* LEFT — CONTENT */}
         <div className="text-center md:text-left">
 
-          {/* EYEBROW — BRAND PRESENCE */}
+          {/* EYEBROW */}
           <p
             className="text-[10px] sm:text-xs uppercase tracking-widest"
             style={{ color: "var(--text-muted)" }}
@@ -35,32 +42,36 @@ When is the best time to visit `
 
           {/* HEADLINE */}
           <h1
-            className="mt-1.5 sm:mt-4 text-[28px] sm:text-5xl md:text-6xl font-semibold leading-tight tracking-tight"
+            className="
+              mt-1.5 sm:mt-4
+              text-[24px] sm:text-4xl lg:text-5xl xl:text-6xl
+              font-semibold leading-tight
+            "
             style={{ color: "var(--foreground)" }}
           >
             Serious Training Starts Here
           </h1>
 
-          {/* SUBLINE — CLEAR, NON-REPETITIVE */}
+          {/* SUBLINE */}
           <p
             className="mt-2 sm:mt-3 text-sm sm:text-base font-medium"
             style={{ color: "var(--action-primary)" }}
           >
-            {offer.tryoutDays}-Day Free Trial · Membership continues at ₹{offer.price}/month
+            {offer.trialDays}-Day Free Trial · No payment required
           </p>
 
-          {/* CTA — INTENT CLEAR */}
-          <div className="mt-4 sm:mt-8 flex justify-center md:justify-start">
+          {/* CTA */}
+          <div className="mt-4 sm:mt-6 lg:mt-8 flex justify-center md:justify-start">
             <HeroCTA
               whatsappLink={whatsappLink}
               variant="primary"
-              label={`Start ${offer.tryoutDays}-Day Free Trial on WhatsApp`}
+              label="Start Free Trial on WhatsApp"
             />
           </div>
 
-          {/* TRUST FILTER — SHARP */}
+          {/* TRUST FILTER */}
           <p
-            className="mt-4 sm:mt-8 text-sm sm:text-base font-medium"
+            className="mt-4 sm:mt-6 lg:mt-8 text-sm sm:text-base font-medium"
             style={{ color: "var(--foreground)" }}
           >
             IronForge Fitness is for people who train consistently — not casual drop-ins.
@@ -79,7 +90,7 @@ When is the best time to visit `
         <div
           className="
             relative w-full
-            aspect-[3/4] md:aspect-[4/5]
+            aspect-[4/5] md:aspect-[3/4] lg:aspect-[4/5]
             overflow-hidden
             rounded-[var(--radius-xl)]
           "
@@ -100,7 +111,6 @@ When is the best time to visit `
             className="object-cover"
           />
         </div>
-
       </div>
     </section>
   );

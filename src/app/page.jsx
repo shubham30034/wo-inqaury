@@ -7,15 +7,17 @@ import StickyWhatsAppCTA from "./components/StickyWhatsAppCTA";
 import PhotoSection from "./components/PhotoSection";
 import GoogleReviews from "./components/GoogleReviews";
 import WhoThisIsFor from "./components/WhoThisIsFor";
+import Header from "./components/Header";
 
 export default function Home() {
   return (
     <main className="bg-background text-foreground">
+      {/* <Header/> */}
       <Hero />
       <Offer />
-      <WhoThisIsFor/>
-      <Goals />
+      <WhoThisIsFor />
       <GoogleReviews />
+      <Goals />
       <PhotoSection />
       <Location />
       <Footer />

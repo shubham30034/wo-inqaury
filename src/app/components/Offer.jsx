@@ -1,20 +1,19 @@
-// NO "use client"
+// ============================================
+// OFFER SECTION — FREE TRIAL + PRICE CLARITY
+// MOBILE-FIRST, DESKTOP-RICH
 // PURE SERVER COMPONENT
+// ============================================
 
 import { getActiveOffer } from "@/app/lib/offerConfig";
 
 export default function Offer() {
   const whatsappNumber = "918279898128";
-
   const offer = getActiveOffer();
 
-  // 🔒 STATIC URGENCY
   const URGENCY_TEXT = "Limited seats this week";
 
-  // 🔒 MESSAGE SENT TO OWNER (NOT SHOWN ON BUTTON)
-  const WHATSAPP_MESSAGE =  `Hi, I want to start the ${offer.tryoutDays}-day free trial.
-I understand the membership continues at ₹${offer.price}/month after the trial.
-When is the best time to visit`;
+  const WHATSAPP_MESSAGE = `Hi, I want to start the ${offer.trialDays}-day free trial.
+When is the best time to visit?`;
 
   const whatsappLink = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(
     WHATSAPP_MESSAGE
@@ -42,50 +41,49 @@ When is the best time to visit`;
                 className="text-[11px] sm:text-xs uppercase tracking-widest"
                 style={{ color: "var(--text-muted)" }}
               >
-                Starter Membership
+                Free Trial Available
               </p>
 
               <h2 className="mt-2 sm:mt-3 text-xl sm:text-3xl font-semibold">
-                Join IronForge Fitness at ₹{offer.price}
+                Try IronForge Fitness — Free for {offer.trialDays} Days
               </h2>
 
-              {/* URGENCY */}
+              {/* URGENCY — DESKTOP ONLY */}
               <p
-                className="mt-2 text-xs font-medium uppercase tracking-wide"
+                className="mt-2 text-xs font-medium uppercase tracking-wide hidden sm:block"
                 style={{ color: "var(--action-primary)" }}
               >
                 {URGENCY_TEXT}
               </p>
 
-              {/* MOBILE PRICE */}
-              <p
-                className="mt-2 sm:hidden text-sm font-semibold"
-                style={{ color: "var(--action-primary)" }}
-              >
-                ₹{offer.price} · Starter Plan
-              </p>
-
-              {/* BENEFITS */}
+              {/* BENEFITS — SHORT ON MOBILE */}
               <ul
                 className="mt-4 space-y-2 text-sm sm:text-base"
                 style={{ color: "var(--text-muted)" }}
               >
-                <li>• ₹{offer.price} starter membership</li>
-                <li>• Full gym access for {offer.tryoutDays} days</li>
-                <li>• Continue only if you like it</li>
+                <li>• {offer.trialDays}-day free gym trial</li>
+                <li>• Full access to workout areas</li>
+                <li className="hidden sm:list-item">
+                  • Join only if you like the training
+                </li>
               </ul>
 
-              {/* PRESSURE REMOVAL */}
+              {/* PRICE CLARITY — SHORT ON MOBILE */}
               <p
                 className="mt-3 mb-1 text-xs leading-snug"
                 style={{ color: "var(--text-muted)" }}
               >
-                No long-term commitment.<br />
-                Try the gym first. Decide later.
+                <span className="sm:hidden">
+                  Membership starts at ₹{offer.price}/month.
+                </span>
+                <span className="hidden sm:inline">
+                  Membership starts at ₹{offer.price}/month after the trial.<br />
+                  No pressure. No obligation to join.
+                </span>
               </p>
 
-              {/* CTA BUTTON (SHORT & CLEAN) */}
-              <div className="mt-3">
+              {/* CTA */}
+              <div className="mt-4">
                 <a
                   href={whatsappLink}
                   target="_blank"
@@ -106,12 +104,12 @@ When is the best time to visit`;
                     color: "var(--action-primary)",
                   }}
                 >
-                  Start ₹{offer.price} Starter Plan
+                  Start Free Trial on WhatsApp
                 </a>
               </div>
             </div>
 
-            {/* RIGHT PRICE BLOCK */}
+            {/* RIGHT — PRICE CARD (DESKTOP ONLY) */}
             <div
               className="hidden sm:flex flex-col items-center justify-center px-8 py-6 text-center"
               style={{
@@ -125,7 +123,7 @@ When is the best time to visit`;
                 className="text-sm"
                 style={{ color: "var(--text-muted)" }}
               >
-                Starter Price
+                Post-Trial Membership
               </p>
 
               <p
@@ -139,7 +137,7 @@ When is the best time to visit`;
                 className="mt-1 text-xs"
                 style={{ color: "var(--text-muted)" }}
               >
-                Includes {offer.tryoutDays}-day try-out window
+                Per month · Join only if you like the trial
               </p>
 
               <p

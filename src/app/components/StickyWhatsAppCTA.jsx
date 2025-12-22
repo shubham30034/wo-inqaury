@@ -10,7 +10,6 @@ export default function StickyWhatsAppCTA() {
   const controls = useAnimationControls();
   const shouldReduceMotion = useReducedMotion();
 
-  // 🔥 ACTIVE OFFER (single source of truth)
   const offer = getActiveOffer();
   const whatsappNumber = "918279898128";
 
@@ -28,7 +27,6 @@ export default function StickyWhatsAppCTA() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  // 🔥 URGENCY LOOP (Controlled Vibration)
   useEffect(() => {
     if (!show || shouldReduceMotion) return;
 
@@ -52,15 +50,14 @@ export default function StickyWhatsAppCTA() {
     };
 
     pulse();
-
     return () => {
       active = false;
     };
   }, [show, controls, shouldReduceMotion]);
 
+  // ✅ SAME MESSAGE AS HERO / OFFER
   const stickyMessage = encodeURIComponent(
-    `Hi, I want to start the ${offer.tryoutDays}-day free trial.
-I understand the membership continues at ₹${offer.price}/month after the trial.
+    `Hi, I want to start the ${offer.trialDays}-day free trial.
 When is the best time to visit?`
   );
 
@@ -97,8 +94,7 @@ When is the best time to visit?`
             "0 12px 28px rgba(22,163,74,0.35), inset 0 -2px 0 rgba(0,0,0,0.18)",
         }}
       >
-        {/* CTA TEXT ONLY */}
-        <span className="text-[12px] font-semibold leading-tight text-center px-1">
+        <span className="text-[12px] font-semibold leading-tight px-1">
           Start<br />Free Trial
         </span>
       </motion.a>

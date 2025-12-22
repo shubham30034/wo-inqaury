@@ -1,28 +1,29 @@
 // ============================================
 // SINGLE SOURCE OF TRUTH — OFFER CONFIG
-// Touch ONLY this file
 // ============================================
 
 export const OFFERS = [
-  // EVERGREEN — ALWAYS ON
   {
     id: "evergreen",
-    label: "₹999 · Starter Plan",
-    whatsappText: "₹999 starter plan",
 
-    // 🔒 PRICING
+    // DISPLAY
+    label: "3-Day Free Trial",
+    whatsappText: "3-day free trial",
+
+    // PRICING (POST-TRIAL ONLY)
     price: 999,
-    billingCycle: "per month", // 👈 CLEAR
+    billingCycle: "per month",
 
-    // 🔒 TRY-OUT (NOT FREE TRIAL)
-    tryoutDays: 3,
+    // TRIAL
+    trialDays: 3,
+    isTrialFree: true,
 
     priority: 99,
   },
 ];
 
 // ============================================
-// AUTO OFFER SELECTION (DO NOT TOUCH)
+// AUTO OFFER SELECTION
 // ============================================
 
 export function getActiveOffer() {
@@ -46,5 +47,5 @@ export function getActiveOffer() {
 
   validOffers.sort((a, b) => a.priority - b.priority);
 
-  return validOffers[0] || OFFERS.find((o) => o.id === "evergreen");
+  return validOffers[0];
 }

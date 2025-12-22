@@ -6,8 +6,6 @@ import { getActiveOffer } from "@/app/lib/offerConfig";
 
 export default function Goals() {
   const whatsappNumber = "918279898128";
-
-  // 🔥 ACTIVE OFFER (single source of truth)
   const offer = getActiveOffer();
 
   const buildLink = (goal) => {
@@ -25,9 +23,9 @@ export default function Goals() {
       goalLine = "My goal is overall fitness and staying active.";
     }
 
-    const msg = `Hi, I want to Start the ${offer.tryoutDays}-day free trial
+    const msg = `Hi, I want to start the ${offer.trialDays}-day free trial.
 ${goalLine}
-When is the best time to visit ?`;
+When is the best time to visit?`;
 
     return `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(msg)}`;
   };
@@ -61,10 +59,7 @@ When is the best time to visit ?`;
   };
 
   const item = {
-    hidden: {
-      opacity: 0,
-      y: 18,
-    },
+    hidden: { opacity: 0, y: 18 },
     show: {
       opacity: 1,
       y: 0,
@@ -128,9 +123,7 @@ When is the best time to visit ?`;
                 </p>
               </div>
 
-              <span className="text-xl font-semibold text-green-600">
-                →
-              </span>
+              <span className="text-xl font-semibold text-green-600">→</span>
             </motion.a>
           ))}
         </motion.div>
@@ -162,10 +155,7 @@ When is the best time to visit ?`;
                   hover:-translate-y-1 hover:shadow-md
                 "
               >
-                <p className="text-lg font-medium">
-                  {goal.name}
-                </p>
-
+                <p className="text-lg font-medium">{goal.name}</p>
                 <p className="mt-2 text-sm text-muted-foreground">
                   {goal.desc}
                 </p>
@@ -178,8 +168,9 @@ When is the best time to visit ?`;
           ))}
         </motion.div>
 
+        {/* FOOTER NOTE */}
         <p className="mt-6 sm:mt-8 text-xs text-center text-muted-foreground">
-          {offer.label} · No forms · No calls · WhatsApp only
+          3-day free trial · No forms · No calls · WhatsApp only
         </p>
       </div>
     </section>
