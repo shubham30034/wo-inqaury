@@ -16,16 +16,14 @@ When is the best time to visit?`
   return (
     <section
       id="hero-section"
-      className="pt-8 pb-10 sm:pt-12 sm:pb-20 lg:pt-16 lg:pb-24"
+      className="pt-6 pb-12 sm:pt-10 sm:pb-20 lg:pt-16 lg:pb-28"
       style={{ background: "var(--background)" }}
     >
       <div
         className="
-          mx-auto max-w-6xl
-          px-4 sm:px-6
-          grid
-          gap-6 sm:gap-8 lg:gap-10
-          md:grid-cols-2
+          mx-auto max-w-6xl px-4 sm:px-6
+          grid gap-8 lg:gap-12
+          md:grid-cols-[1.15fr_0.85fr]
           items-center
         "
       >
@@ -34,55 +32,57 @@ When is the best time to visit?`
 
           {/* EYEBROW */}
           <p
-            className="text-[10px] sm:text-xs uppercase tracking-widest"
+            className="text-[10px] uppercase tracking-widest"
             style={{ color: "var(--text-muted)" }}
           >
-            IronForge Fitness · WhatsApp Inquiry
+            IronForge Fitness · WhatsApp Entry
           </p>
 
           {/* HEADLINE */}
           <h1
             className="
-              mt-1.5 sm:mt-4
-              text-[24px] sm:text-4xl lg:text-5xl xl:text-6xl
-              font-semibold leading-tight
+              mt-3
+              text-[26px] leading-[1.15]
+              sm:text-4xl lg:text-[44px] xl:text-5xl
+              font-extrabold
             "
             style={{ color: "var(--foreground)" }}
           >
-            Serious Training Starts Here
+            Serious Training
+            <br className="sm:hidden" />
+            Starts Here
           </h1>
 
           {/* SUBLINE */}
           <p
-            className="mt-2 sm:mt-3 text-sm sm:text-base font-medium"
+            className="mt-4 text-sm sm:text-base font-semibold"
             style={{ color: "var(--action-primary)" }}
           >
             {offer.trialDays}-Day Free Trial · No payment required
           </p>
 
+          {/* TRUST */}
+          <p
+            className="mt-4 text-sm sm:text-base font-medium"
+            style={{ color: "var(--foreground)" }}
+          >
+            Built for people who train consistently — not casual drop-ins.
+          </p>
+
           {/* CTA */}
-          <div className="mt-4 sm:mt-6 lg:mt-8 flex justify-center md:justify-start">
+          <div className="mt-6 flex justify-center md:justify-start">
             <HeroCTA
               whatsappLink={whatsappLink}
               variant="primary"
-              label="Start Free Trial on WhatsApp"
             />
           </div>
 
-          {/* TRUST FILTER */}
-          <p
-            className="mt-4 sm:mt-6 lg:mt-8 text-sm sm:text-base font-medium"
-            style={{ color: "var(--foreground)" }}
-          >
-            IronForge Fitness is for people who train consistently — not casual drop-ins.
-          </p>
-
           {/* FRICTION KILL */}
           <p
-            className="mt-1 sm:mt-2 text-xs sm:text-sm"
+            className="mt-3 text-xs sm:text-sm"
             style={{ color: "var(--text-muted)" }}
           >
-            No forms. No calls. No sales pressure.
+            No forms · No calls · No sales pressure
           </p>
         </div>
 
@@ -90,16 +90,17 @@ When is the best time to visit?`
         <div
           className="
             relative w-full
-            aspect-[4/5] md:aspect-[3/4] lg:aspect-[4/5]
+            aspect-[4/5]
             overflow-hidden
             rounded-[var(--radius-xl)]
+            shadow-lg
           "
         >
           <div
             className="absolute inset-0 z-10 pointer-events-none"
             style={{
               background:
-                "linear-gradient(180deg, rgba(0,0,0,0.35) 0%, rgba(0,0,0,0.15) 40%, rgba(0,0,0,0) 100%)",
+                "linear-gradient(180deg, rgba(0,0,0,0.25) 0%, rgba(0,0,0,0.05) 45%, rgba(0,0,0,0) 100%)",
             }}
           />
 

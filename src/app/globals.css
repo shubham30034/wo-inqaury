@@ -1,15 +1,21 @@
 @import "tailwindcss";
 
 /* =================================================
-   GYM DESIGN SYSTEM — PROFESSIONAL & SELLABLE
+   GYM WHATSAPP INQUIRY — PREMIUM DESIGN SYSTEM
    ================================================= */
+
 :root {
-  /* ================= BASE ================= */
-  --background: #f8fafc;              /* off-white, not pure */
-  --foreground: #0f172a;              /* deep slate */
+  /* ================= BASE CANVAS ================= */
+  --background: radial-gradient(
+    1200px 600px at 50% -200px,
+    #dcfce7 0%,
+    #f8fafc 40%,
+    #f8fafc 100%
+  );
+  --foreground: #0f172a;
 
   /* ================= BRAND ================= */
-  --primary: #16a34a;                 /* athletic green */
+  --primary: #16a34a;
   --primary-foreground: #ffffff;
 
   --secondary: #dcfce7;
@@ -17,22 +23,21 @@
 
   /* ================= TEXT ================= */
   --text-primary: var(--foreground);
-  --text-muted: #64748b;              /* 👈 improved readability */
+  --text-muted: #6b7280;
   --text-inverse: #ffffff;
 
   /* ================= ACTIONS ================= */
   --action-primary: var(--primary);
   --action-primary-hover: #15803d;
-  --action-secondary: #22c55e;
 
   /* ================= SURFACES ================= */
   --surface-page: var(--background);
-  --surface-section: #f1f5f9;         /* visible separation */
+  --surface-section: #f1f5f9;
   --surface-card: #ffffff;
   --surface-soft: #e5e7eb;
 
   /* ================= BORDERS ================= */
-  --border: #cbd5e1;
+  --border: rgba(203,213,225,0.6);
   --border-strong: #94a3b8;
 
   /* ================= RADIUS ================= */
@@ -43,15 +48,23 @@
   --radius-pill: 9999px;
 
   /* ================= SHADOWS ================= */
-  --shadow-sm: 0 1px 3px rgba(0,0,0,0.06);
-  --shadow-md: 0 6px 20px rgba(0,0,0,0.10);
-  --shadow-lg: 0 14px 40px rgba(0,0,0,0.14);
+  --shadow-sm:
+    0 1px 2px rgba(0,0,0,0.04),
+    0 12px 24px rgba(0,0,0,0.06);
+
+  --shadow-md:
+    0 10px 30px rgba(0,0,0,0.10);
+
+  --shadow-lg:
+    0 20px 60px rgba(0,0,0,0.14);
 
   /* ================= CTA ================= */
   --cta-bg: var(--action-primary);
   --cta-text: var(--text-inverse);
   --cta-hover: var(--action-primary-hover);
-  --cta-shadow: 0 10px 30px rgba(22,163,74,0.35);
+  --cta-shadow:
+    0 0 0 0 rgba(22,163,74,0),
+    0 12px 40px rgba(22,163,74,0.45);
 
   /* ================= FEEDBACK ================= */
   --success: #16a34a;
@@ -86,11 +99,17 @@
 }
 
 /* =================================================
-   DARK MODE (SERIOUS GYM)
+   DARK MODE — SERIOUS / PREMIUM
    ================================================= */
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #020617;
+    --background: radial-gradient(
+      1200px 600px at 50% -200px,
+      rgba(22,163,74,0.15) 0%,
+      #020617 45%,
+      #020617 100%
+    );
+
     --foreground: #f8fafc;
 
     --surface-page: #020617;
@@ -98,8 +117,8 @@
     --surface-card: #020617;
     --surface-soft: #020617;
 
-    --border: #1f2937;
-    --border-strong: #374151;
+    --border: rgba(255,255,255,0.06);
+    --border-strong: rgba(255,255,255,0.12);
 
     --text-muted: #9ca3af;
   }
@@ -116,15 +135,46 @@ body {
 }
 
 /* =================================================
-   SYSTEM UI HELPERS (USE GRADUALLY)
+   TYPOGRAPHY AUTHORITY
+   ================================================= */
+h1, h2 {
+  letter-spacing: -0.025em;
+}
+
+h1 {
+  font-weight: 800;
+}
+
+h2 {
+  font-weight: 700;
+}
+
+/* =================================================
+   SYSTEM UI HELPERS
    ================================================= */
 
 /* Card */
 .ui-card {
-  background: var(--surface-card);
+  background: linear-gradient(
+    180deg,
+    #ffffff 0%,
+    #f8fafc 100%
+  );
   border: 1px solid var(--border);
   border-radius: var(--radius-xl);
   box-shadow: var(--shadow-sm);
+  backdrop-filter: blur(6px);
+}
+
+/* Dark card override */
+@media (prefers-color-scheme: dark) {
+  .ui-card {
+    background: linear-gradient(
+      180deg,
+      rgba(255,255,255,0.04),
+      rgba(255,255,255,0.02)
+    );
+  }
 }
 
 /* Section */
@@ -146,8 +196,10 @@ body {
 
 .ui-cta:hover {
   background: var(--cta-hover);
-  transform: translateY(-1px);
-  box-shadow: 0 14px 45px rgba(22,163,74,0.45);
+  transform: translateY(-2px) scale(1.01);
+  box-shadow:
+    0 0 0 6px rgba(22,163,74,0.15),
+    0 18px 50px rgba(22,163,74,0.55);
 }
 
 /* Muted text */
