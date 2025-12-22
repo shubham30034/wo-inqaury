@@ -48,9 +48,16 @@ When is the best time to visit?`
             "
             style={{ color: "var(--foreground)" }}
           >
-            Serious Training
-            <br className="sm:hidden" />
-            Starts Here
+            <span className="block">
+              {offer.trialDays}-Day Free Gym Trial
+            </span>
+
+            {/* Mobile spacing */}
+            <span className="block sm:hidden h-1" />
+
+            <span className="block">
+              Start on WhatsApp
+            </span>
           </h1>
 
           {/* SUBLINE */}
@@ -58,7 +65,7 @@ When is the best time to visit?`
             className="mt-4 text-sm sm:text-base font-semibold"
             style={{ color: "var(--action-primary)" }}
           >
-            {offer.trialDays}-Day Free Trial · No payment required
+            No payment required · Visit before you decide
           </p>
 
           {/* TRUST */}
@@ -96,6 +103,7 @@ When is the best time to visit?`
             shadow-lg
           "
         >
+          {/* Overlay */}
           <div
             className="absolute inset-0 z-10 pointer-events-none"
             style={{
