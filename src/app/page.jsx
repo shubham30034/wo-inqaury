@@ -8,16 +8,18 @@ import PhotoSection from "./components/PhotoSection";
 import GoogleReviews from "./components/GoogleReviews";
 import WhoThisIsFor from "./components/WhoThisIsFor";
 import Header from "./components/Header";
+import TrustStrip from "./components/TrustStrip";
 
 export default function Home() {
   return (
     <main className="bg-background text-foreground">
-      {/* <Header/> */}
+
       <Hero />
+      <TrustStrip/>
       <Offer />
       <WhoThisIsFor />
-      <GoogleReviews />
       <Goals />
+      <GoogleReviews />
       <PhotoSection />
       <Location />
       <Footer />
