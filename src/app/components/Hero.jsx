@@ -5,10 +5,10 @@ import { getActiveOffer } from "@/app/lib/offerConfig";
 
 export default function Hero() {
   const whatsappNumber = "918279898128";
-  const offer = getActiveOffer();
+  const offer = getActiveOffer(); // Trial days yahan se aayenge (3 Days)
 
   const heroMessage = encodeURIComponent(
-    `Hi, I want to start the ${offer.trialDays}-day free trial. When is the best time to visit?`
+    `Hi! I want to claim my ${offer.trialDays}-Day Free Pass and know more about the ₹999 monthly plan.`
   );
 
   const whatsappLink = `https://wa.me/${whatsappNumber}?text=${heroMessage}`;
@@ -22,12 +22,10 @@ export default function Hero() {
         <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')] opacity-[0.03]" />
       </div>
 
-      {/* Mobile-first padding adjustment (pt-8 on mobile vs pt-12 on desktop) */}
       <div className="container mx-auto max-w-7xl px-6 relative z-10 pt-8 lg:pt-12 pb-12">
         <div className="flex flex-col lg:grid lg:grid-cols-12 gap-8 lg:gap-12 items-center">
           
           {/* --- IMAGE SIDE --- */}
-          {/* Mobile pe image thodi compact rakhi hai taaki button upar shift ho jaye */}
           <div className="order-1 lg:order-2 lg:col-span-5 w-full max-w-[240px] sm:max-w-[340px] lg:max-w-none mx-auto">
             <div className="relative aspect-[4/5] rounded-[var(--radius-gym-lg)] overflow-hidden border border-[var(--color-border)] shadow-2xl">
               <Image
@@ -41,9 +39,9 @@ export default function Hero() {
               
               <div className="absolute bottom-4 left-4 right-4 bg-black/40 backdrop-blur-xl border border-[var(--color-border)] p-2.5 rounded-2xl flex items-center gap-3 animate-bounce-slow">
                 <div className="w-8 h-8 bg-[var(--color-primary)] rounded-full flex items-center justify-center text-black">
-                  <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={4}><path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" /></svg>
+                  <span className="font-bold text-[10px]">SAVE</span>
                 </div>
-                <p className="text-[var(--color-text-main)] font-black text-[9px] uppercase tracking-wider italic">Verified Entry</p>
+                <p className="text-[var(--color-text-main)] font-black text-[9px] uppercase tracking-wider italic">Limited Slots: ₹999/mo</p>
               </div>
             </div>
           </div>
@@ -53,17 +51,18 @@ export default function Hero() {
             
             <div className="inline-flex items-center gap-2 bg-white/5 border border-[var(--color-border)] px-4 py-1.5 rounded-full mb-4 sm:mb-6">
               <span className="flex h-1.5 w-1.5 rounded-full bg-[var(--color-primary)] animate-pulse" />
-              <span className="text-[var(--color-text-muted)] text-[10px] font-black tracking-[0.25em] uppercase">Premium Fitness Studio</span>
+              <span className="text-[var(--color-text-muted)] text-[10px] font-black tracking-[0.25em] uppercase">Stop Wishing. Start Doing.</span>
             </div>
 
-            <h1 className="gym-heading mb-4 sm:mb-6 lg:text-left text-4xl sm:text-5xl lg:text-7xl">
-              TRAIN <span className="text-transparent bg-clip-text bg-gradient-to-r from-[var(--color-primary)] to-emerald-400 italic">HARDER.</span>
-              <br />LIVE BETTER.
+            <h1 className="gym-heading mb-4 sm:mb-6 lg:text-left text-4xl sm:text-5xl lg:text-7xl leading-[0.9]">
+              ELITE STRENGTH. <br />
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-[var(--color-primary)] to-emerald-400 italic underline decoration-[var(--color-primary)]/30">ONLY ₹999.</span>
             </h1>
 
             <p className="gym-text-muted text-sm sm:text-xl max-w-md mb-6 sm:mb-10">
-              Grab your <span className="text-[var(--color-text-main)] font-bold">{offer.trialDays}-Day Free Pass</span>. 
-              Pure training, zero pressure.
+              Start with a <span className="text-[var(--color-text-main)] font-bold">{offer.trialDays}-Day VIP Trial</span>. 
+              Then transform for less than <span className="text-[var(--color-primary)] font-bold">₹33/day</span>. 
+              No hidden fees, just pure iron.
             </p>
 
             {/* CTA BOX */}
@@ -75,6 +74,8 @@ export default function Hero() {
                   whatsappLink={whatsappLink}
                   variant="primary"
                   className="gym-button w-full sm:w-auto text-lg sm:text-xl"
+                  // Text prop agar aapka HeroCTA support karta hai toh: 
+                  // text={`Get My Free ${offer.trialDays}-Day Pass`} 
                 />
               </div>
               
@@ -85,21 +86,25 @@ export default function Hero() {
                   ))}
                 </div>
                 <div className="flex flex-col items-start leading-none">
-                   <span className="text-[var(--color-text-main)] font-bold text-xs sm:text-sm tracking-tight">500+ Members</span>
-                   <span className="text-[var(--color-text-muted)] text-[8px] sm:text-[9px] font-bold uppercase tracking-widest mt-1">Trust the process</span>
+                   <span className="text-[var(--color-text-main)] font-bold text-xs sm:text-sm tracking-tight">Active Community</span>
+                   <span className="text-[var(--color-text-muted)] text-[8px] sm:text-[9px] font-bold uppercase tracking-widest mt-1">₹999 Plan Ending Soon</span>
                 </div>
               </div>
             </div>
 
-            {/* Micro Stats (Mobile-optimized grid) */}
+            {/* Micro Stats */}
             <div className="mt-8 sm:mt-12 flex gap-2 sm:gap-3 w-full max-w-sm sm:max-w-md">
-              {["24/7 Access", "PRO Coaching", "ELITE Gear"].map((stat, idx) => (
+              {[
+                { top: "FREE", bot: "3-DAY TRIAL" },
+                { top: "₹999", bot: "FIXED MONTHLY" },
+                { top: "ZERO", bot: "JOINING FEE" }
+              ].map((stat, idx) => (
                 <div key={idx} className="flex-1 p-3 sm:p-4 gym-card !bg-white/[0.02]">
-                  <p className={`${idx === 0 ? 'text-[var(--color-primary)]' : 'text-[var(--color-text-main)]'} font-black text-base sm:text-xl tracking-tighter italic leading-none`}>
-                    {stat.split(' ')[0]}
+                  <p className={`${idx === 1 ? 'text-[var(--color-primary)]' : 'text-[var(--color-text-main)]'} font-black text-base sm:text-xl tracking-tighter italic leading-none`}>
+                    {stat.top}
                   </p>
                   <p className="gym-text-muted !text-[8px] sm:text-[9px] uppercase font-bold tracking-widest mt-1 sm:mt-2">
-                    {stat.split(' ')[1]}
+                    {stat.bot}
                   </p>
                 </div>
               ))}

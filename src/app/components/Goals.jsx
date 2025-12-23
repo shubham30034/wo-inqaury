@@ -10,29 +10,32 @@ export default function Goals() {
 
   const goals = [
     {
-      name: "Fat Loss",
-      desc: "Lose fat, improve stamina, and feel lighter",
-      icon: "⚡",
+      name: "Fat Shred",
+      desc: "Sirf weight loss nahi, stamina ka khel hai. Burn fat while building a body that never gets tired.",
+      icon: "🔥",
+      tag: "Best for Weight Loss"
     },
     {
-      name: "Muscle Gain",
-      desc: "Build strength with structured training",
-      icon: "💪",
+      name: "Muscle Forge",
+      desc: "Raw power aur aesthetic look. Structured training unke liye jo serious strength gain chahte hain.",
+      icon: "⚔️",
+      tag: "Power & Size"
     },
     {
-      name: "General Fitness",
-      desc: "Stay active, flexible, and injury-free",
-      icon: "🧘",
+      name: "Body Recomp",
+      desc: "Confusion khatam karo. Lose fat and build muscle simultaneously with expert-led hybrid guidance.",
+      icon: "⚖️",
+      tag: "Transformation"
     },
   ];
 
   const buildLink = (goal) => {
     let goalLine = "";
-    if (goal === "Fat Loss") goalLine = "My goal is fat loss and improving stamina.";
-    if (goal === "Muscle Gain") goalLine = "My goal is muscle gain and strength training.";
-    if (goal === "General Fitness") goalLine = "My goal is overall fitness and staying active.";
+    if (goal === "Fat Shred") goalLine = "My goal is Fat Shred - I want to lose weight and increase stamina.";
+    if (goal === "Muscle Forge") goalLine = "My goal is Muscle Forge - I want to build strength and size.";
+    if (goal === "Body Recomp") goalLine = "I'm looking for Body Recomposition - losing fat and gaining muscle together.";
 
-    const msg = `Hi, I want to start the ${offer.trialDays}-day free trial.\n${goalLine}\nWhen is the best time to visit?`;
+    const msg = `Hi IronForge! I want to claim my ${offer.trialDays}-Day Free Pass.\n\nTarget: ${goal}\nPlan: ${goalLine}\n\nIs the ₹999/mo offer still available?`;
     return `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(msg)}`;
   };
 
@@ -42,20 +45,28 @@ export default function Goals() {
         
         {/* Header - Connected to System */}
         <div className="text-center mb-10 sm:mb-16">
+          <motion.div
+            initial={{ opacity: 0, y: -10 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            className="inline-block px-4 py-1.5 mb-6 border border-[var(--color-primary)]/20 rounded-full bg-[var(--color-primary)]/5"
+          >
+            <span className="text-[10px] font-black uppercase tracking-[0.3em] text-[var(--color-primary)]">Step 1: Choose Your Path</span>
+          </motion.div>
+          
           <motion.h2 
             initial={{ opacity: 0, y: -10 }}
             whileInView={{ opacity: 1, y: 0 }}
             className="gym-heading"
           >
-            Choose Your <span className="text-[var(--color-primary)]">Mission</span>
+            Define Your <span className="text-[var(--color-primary)]">Mission</span>
           </motion.h2>
-          <p className="gym-text-muted mt-2 max-w-[280px] sm:max-w-md mx-auto">
-            Tap a goal to get your personalized plan on WhatsApp instantly.
+          <p className="gym-text-muted mt-4 max-w-[320px] sm:max-w-md mx-auto text-base sm:text-lg">
+            Select a goal to unlock your <span className="text-white font-bold italic">Custom Training Roadmap</span> on WhatsApp instantly.
           </p>
         </div>
 
-        {/* Goals Grid - Using gym-card Design System */}
-        <div className="grid gap-4 sm:gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        {/* Goals Grid */}
+        <div className="grid gap-5 sm:gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {goals.map((goal, index) => (
             <motion.a
               key={goal.name}
@@ -67,44 +78,63 @@ export default function Goals() {
               target="_blank"
               rel="noopener noreferrer"
               onClick={() => trackEvent("whatsapp_click", `goal_${goal.name.toLowerCase()}`)}
-              className="gym-card group relative flex flex-col p-6 sm:p-8 overflow-hidden active:scale-95 transition-all duration-300"
+              className="gym-card group relative flex flex-col p-6 sm:p-10 overflow-hidden active:scale-95 transition-all duration-500"
             >
-              {/* Dynamic Gradient Overlay (Using System Primary Color) */}
-              <div className="absolute inset-0 bg-gradient-to-br from-[var(--color-primary)] to-transparent opacity-0 group-hover:opacity-10 transition-opacity duration-500" />
-              
-              {/* Icon Container - Synced with variables */}
-              <div className="relative z-10 w-12 h-12 sm:w-16 sm:h-16 rounded-xl sm:rounded-2xl bg-white/5 border border-[var(--color-border)] flex items-center justify-center text-2xl sm:text-3xl mb-4 sm:mb-8 transition-transform group-hover:scale-110 group-hover:border-[var(--color-primary)]/30">
+              {/* Floating Tag */}
+              <div className="absolute top-4 right-4">
+                <span className="text-[7px] font-black uppercase tracking-widest bg-[var(--color-primary)]/10 text-[var(--color-primary)] px-2 py-1 rounded border border-[var(--color-primary)]/20 group-hover:bg-[var(--color-primary)] group-hover:text-black transition-all">
+                  {goal.tag}
+                </span>
+              </div>
+
+              {/* Icon Container */}
+              <div className="relative z-10 w-14 h-14 sm:w-16 sm:h-16 rounded-2xl bg-white/5 border border-[var(--color-border)] flex items-center justify-center text-3xl mb-8 group-hover:scale-110 group-hover:border-[var(--color-primary)]/40 transition-all duration-500 shadow-inner">
                 {goal.icon}
               </div>
 
               {/* Text - System Typography */}
               <div className="relative z-10">
-                <h3 className="text-lg sm:text-2xl font-black text-[var(--color-text-main)] uppercase tracking-tight mb-2 italic">
+                <h3 className="text-xl sm:text-3xl font-[1000] text-[var(--color-text-main)] uppercase tracking-tighter mb-3 italic leading-none">
                   {goal.name}
                 </h3>
-                <p className="gym-text-muted mb-6 sm:mb-8 group-hover:text-[var(--color-text-main)] transition-colors">
+                <p className="text-[var(--color-text-muted)] text-xs sm:text-sm leading-relaxed mb-8 group-hover:text-white transition-colors duration-300">
                   {goal.desc}
                 </p>
               </div>
 
-              {/* Action Link - System Accents */}
-              <div className="relative z-10 mt-auto flex items-center gap-2">
-                <span className="text-[10px] font-black uppercase tracking-widest text-[var(--color-primary)]">Select Mission</span>
-                <div className="h-[1px] flex-grow bg-[var(--color-primary)] opacity-20" />
-                <span className="text-[var(--color-primary)] group-hover:translate-x-1 transition-transform">→</span>
+              {/* Action - Design Sync */}
+              <div className="relative z-10 mt-auto flex items-center justify-between">
+                <span className="text-[10px] font-black uppercase tracking-widest text-[var(--color-primary)] opacity-80 group-hover:opacity-100">Claim Mission</span>
+                <div className="w-8 h-8 rounded-full border border-[var(--color-primary)]/20 flex items-center justify-center group-hover:bg-[var(--color-primary)] group-hover:text-black transition-all">
+                  <span className="text-lg">→</span>
+                </div>
               </div>
+
+              {/* Subtle Inner Glow on Hover */}
+              <div className="absolute inset-0 bg-gradient-to-br from-[var(--color-primary)]/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
             </motion.a>
           ))}
         </div>
 
-        {/* Bottom Trust Note */}
-        <div className="mt-12 flex flex-row flex-wrap justify-center gap-x-4 gap-y-2 text-[8px] sm:text-[10px] font-black uppercase tracking-[0.2em] text-[var(--color-text-muted)] border-t border-[var(--color-border)] pt-8 opacity-50">
-          <span>{offer.trialDays}-Day Trial</span>
-          <span className="text-[var(--color-primary)]">•</span>
-          <span>No Credit Card</span>
-          <span className="text-[var(--color-primary)]">•</span>
-          <span>Instant Approval</span>
+        {/* Value Recap Section */}
+        <div className="mt-16 text-center border-t border-[var(--color-border)] pt-12">
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 max-w-3xl mx-auto mb-8">
+            {[
+              { label: "Trial Phase", val: `${offer.trialDays} Days - FREE` },
+              { label: "Membership", val: "₹999/Month Only" },
+              { label: "Commitment", val: "Zero Hidden Fees" }
+            ].map((stat, i) => (
+              <div key={i} className="flex flex-col gap-1">
+                <span className="text-[8px] font-black uppercase tracking-[0.3em] text-[var(--color-text-muted)]">{stat.label}</span>
+                <span className="text-sm font-bold text-white italic">{stat.val}</span>
+              </div>
+            ))}
+          </div>
+          <p className="text-[10px] text-[var(--color-text-muted)] uppercase tracking-widest opacity-40">
+            Limited ₹999 Slots available for this month
+          </p>
         </div>
+
       </div>
     </section>
   );

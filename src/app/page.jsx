@@ -9,6 +9,7 @@ import GoogleReviews from "./components/GoogleReviews";
 import WhoThisIsFor from "./components/WhoThisIsFor";
 import Header from "./components/Header";
 import TrustStrip from "./components/TrustStrip";
+import FAQ from "./components/FAQ"
 
 export default function Home() {
   return (
@@ -17,8 +18,9 @@ export default function Home() {
       <Hero />
       <TrustStrip/>
       <Offer />
-      <WhoThisIsFor />
       <Goals />
+      <WhoThisIsFor />
+      <FAQ />
       <GoogleReviews />
       <PhotoSection />
       <Location />
