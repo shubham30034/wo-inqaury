@@ -47,7 +47,7 @@ export default function Offer() {
                 {[
                   `Full Access to Elite Equipment`,
                   `Zero Upfront Commitment`,
-                  `Expert Vibe Check Included`
+                  `No Sales Pressure During Trial`
                 ].map((item, i) => (
                   <li key={i} className="flex items-center justify-center lg:justify-start gap-3">
                     <div className="w-5 h-5 rounded-full bg-[var(--color-primary)]/20 flex items-center justify-center">
@@ -71,7 +71,7 @@ export default function Offer() {
                   target="_blank"
                   className="gym-button relative w-full sm:w-auto px-10 py-5 text-lg overflow-hidden group"
                 >
-                  <span className="relative z-10">Get Your VIP Pass</span>
+                  <span className="relative z-10">START FREE TRIAL ON WHATSAPP</span>
                   <div className="absolute inset-0 bg-white opacity-0 group-hover:opacity-20 transition-opacity" />
                 </a>
                 

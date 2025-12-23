@@ -29,7 +29,7 @@ export default function HeroCTA({ whatsappLink, variant, className = "" }) {
       <div className="absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-1000 bg-gradient-to-r from-transparent via-white/30 to-transparent pointer-events-none" />
 
       <span className="relative z-10 flex items-center gap-2">
-        Start Free Trial
+        Start Free Trial on WhatsApp
         <svg 
           className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" 
           fill="none" 

@@ -96,7 +96,7 @@ export default function Hero() {
             <div className="mt-8 sm:mt-12 flex gap-2 sm:gap-3 w-full max-w-sm sm:max-w-md">
               {[
                 { top: "FREE", bot: "3-DAY TRIAL" },
-                { top: "₹999", bot: "FIXED MONTHLY" },
+                { top: "₹999", bot: "FIXED MONTHLY AFTER TRIAL" },
                 { top: "ZERO", bot: "JOINING FEE" }
               ].map((stat, idx) => (
                 <div key={idx} className="flex-1 p-3 sm:p-4 gym-card !bg-white/[0.02]">
