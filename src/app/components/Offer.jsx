@@ -71,7 +71,7 @@ export default function Offer() {
                   target="_blank"
                   className="gym-button relative w-full sm:w-auto px-10 py-5 text-lg overflow-hidden group"
                 >
-                  <span className="relative z-10">START FREE TRIAL ON WHATSAPP</span>
+                  <span className="relative z-10">START FREE TRIAL </span>
                   <div className="absolute inset-0 bg-white opacity-0 group-hover:opacity-20 transition-opacity" />
                 </a>
                 
