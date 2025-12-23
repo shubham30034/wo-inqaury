@@ -22,18 +22,18 @@ const TARGET_AUDIENCE = [
 
 export default function WhoThisIsFor() {
   return (
-    <section className="relative py-16 bg-[#050505] overflow-hidden">
+    <section className="relative overflow-hidden bg-[var(--color-background)]">
       <div className="mx-auto max-w-5xl px-6 relative z-10">
         
-        {/* Section Header - Sized Down for Mobile */}
+        {/* Section Header - Connected to Global Heading System */}
         <div className="text-center mb-10">
-          <h2 className="text-2xl sm:text-4xl font-[1000] text-white tracking-tighter uppercase italic">
-            Is IronForge <span className="text-[#22c55e]">Right For You?</span>
+          <h2 className="gym-heading">
+            Is IronForge <span className="text-[var(--color-primary)]">Right For You?</span>
           </h2>
-          <div className="mt-3 h-1 w-12 bg-[#22c55e] mx-auto rounded-full opacity-40" />
+          <div className="mt-3 h-1.5 w-12 bg-[var(--color-primary)] mx-auto rounded-full opacity-30" />
         </div>
 
-        {/* Bento-Style Grid - Reduced Padding & Gaps */}
+        {/* Bento-Style Grid - Using gym-card Design System */}
         <div className="grid gap-4 sm:grid-cols-3">
           {TARGET_AUDIENCE.map((item, index) => (
             <motion.div
@@ -42,32 +42,32 @@ export default function WhoThisIsFor() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: index * 0.1, duration: 0.4 }}
-              className="group relative p-6 sm:p-8 rounded-[1.5rem] border border-white/5 bg-white/[0.02] hover:bg-white/[0.05] transition-all duration-300"
+              className="gym-card group relative p-6 sm:p-8"
             >
-              {/* Icon - Smaller on Mobile */}
-              <div className="mb-4 text-3xl sm:text-4xl group-hover:scale-110 transition-transform duration-300">
+              {/* Icon - Animation stays, but colors are dynamic */}
+              <div className="mb-4 text-3xl sm:text-4xl group-hover:scale-110 transition-transform duration-300 drop-shadow-[0_0_10px_var(--color-primary-glow)]">
                 {item.icon}
               </div>
               
-              <h3 className="text-lg sm:text-xl font-black text-white mb-2 uppercase tracking-tight">
+              <h3 className="text-lg sm:text-xl font-black text-[var(--color-text-main)] mb-2 uppercase tracking-tight italic">
                 {item.title}
               </h3>
               
-              <p className="text-gray-500 text-xs sm:text-sm leading-relaxed font-medium group-hover:text-gray-400 transition-colors">
+              <p className="gym-text-muted group-hover:text-[var(--color-text-main)] transition-colors duration-300">
                 {item.desc}
               </p>
 
-              {/* Hover Decor - Color Fixed */}
-              <div className="absolute inset-0 border-2 border-[#22c55e]/0 group-hover:border-[#22c55e]/20 rounded-[1.5rem] transition-all pointer-events-none" />
+              {/* Hover Decor - Linked to Global Primary Color */}
+              <div className="absolute inset-0 border-2 border-[var(--color-primary)]/0 group-hover:border-[var(--color-primary)]/20 rounded-[var(--radius-card)] transition-all pointer-events-none" />
             </motion.div>
           ))}
         </div>
 
-        {/* Bottom Micro-Copy */}
+        {/* Bottom Micro-Copy - Connected to Muted Text System */}
         <motion.p 
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
-          className="mt-10 text-center text-gray-600 text-[9px] sm:text-[11px] font-bold uppercase tracking-[0.2em] sm:tracking-[0.3em]"
+          className="mt-10 text-center text-[var(--color-text-muted)] text-[9px] sm:text-[11px] font-[1000] uppercase tracking-[0.3em] opacity-50"
         >
           No Ego • No Judgement • Just Results
         </motion.p>

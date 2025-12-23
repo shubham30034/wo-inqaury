@@ -16,22 +16,17 @@ export default function HeroCTA({ whatsappLink, variant, className = "" }) {
           isMobile ? "hero_mobile" : "hero_desktop"
         )
       }
-      // Direct Tailwind colors use kiye hain taaki variable ka error na aaye
+      /* Ab ye gym-button class use karega jo globals.css mein define hai.
+         Shadows aur background-color ab variables se aayenge.
+      */
       className={`
-        group relative overflow-hidden
-        inline-flex items-center justify-center gap-3
-        bg-[#22c55e] hover:bg-[#1eb054]
-        text-black font-[950] uppercase tracking-tighter
-        px-10 py-5 rounded-2xl
-        shadow-[0_10px_30px_-10px_rgba(34,197,94,0.5)]
-        hover:shadow-[0_15px_40px_-10px_rgba(34,197,94,0.7)]
-        transition-all duration-300 active:scale-95
+        gym-button group relative overflow-hidden inline-flex gap-3
         ${isMobile ? "w-full text-base" : "w-full sm:w-auto text-lg"}
         ${className}
       `}
     >
-      {/* SHIMMER EFFECT (Light swipe) */}
-      <div className="absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-700 bg-gradient-to-r from-transparent via-white/40 to-transparent" />
+      {/* SHIMMER EFFECT (Adaptive to Primary Color) */}
+      <div className="absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-1000 bg-gradient-to-r from-transparent via-white/30 to-transparent pointer-events-none" />
 
       <span className="relative z-10 flex items-center gap-2">
         Start Free Trial
