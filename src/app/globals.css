@@ -1,91 +1,97 @@
 @import "tailwindcss";
 
 @theme {
-  /* --- DESIGN TOKENS (CSS Variables) --- */
+  /* --- ADVANCED DESIGN TOKENS --- */
+  --color-background: #030303;      /* Thoda aur deep black */
+  --color-surface: #080808;
+  --color-card: rgba(255, 255, 255, 0.02); 
   
-  /* 1. Colors */
-  --color-background: #050505;       /* Main BG */
-  --color-surface: #0a0a0a;          /* Section BG */
-  --color-card: rgba(255, 255, 255, 0.03); /* Card BG */
+  --color-primary: #22c55e;
+  --color-primary-glow: rgba(34, 197, 94, 0.4);
   
-  --color-primary: #22c55e;          /* Action Color (Green) */
-  --color-primary-glow: rgba(34, 197, 94, 0.3);
+  --color-text-main: #ffffff;
+  --color-text-muted: #888888;      /* Thoda visibility badhayi */
   
-  --color-text-main: #ffffff;        /* Primary Text */
-  --color-text-muted: #666666;       /* Secondary Text */
-  
-  --color-border: rgba(255, 255, 255, 0.08);
+  --color-border: rgba(255, 255, 255, 0.06);
 
-  /* 2. Spacing & Shapes */
-  --radius-card: 1.5rem;             /* Card Roundness */
-  --radius-button: 0.75rem;          /* Button Roundness */
+  --radius-card: 2rem;              /* Modern look ke liye thoda zyada round */
+  --radius-button: 0.5rem;          /* Industrial look ke liye sharper buttons */
   
-  --section-spacing: 5rem;           /* Gap between sections */
+  --section-spacing: 6rem;
 }
 
-/* --- BASE SETUP --- */
 @layer base {
   body {
     background-color: var(--color-background);
     color: var(--color-text-main);
-    font-feature-settings: "ss01", "ss02", "cv01", "cv02";
     -webkit-font-smoothing: antialiased;
+    /* Noise Texture: Isse site "flat" nahi lagegi, depth aayegi */
+    background-image: url("https://www.transparenttextures.com/patterns/dark-matter.png");
     overflow-x: hidden;
   }
 
-  section {
-    padding-top: var(--section-spacing);
-    padding-bottom: var(--section-spacing);
+  /* Smooth Scrolling */
+  html {
+    scroll-behavior: smooth;
   }
 }
 
-/* --- REUSABLE UI CLASSES --- */
 @layer components {
   
-  /* Heading System */
+  /* Heading: Isme humne 'tracking-tighter' aur 'skew' ka touch diya hai */
   .gym-heading {
-    @apply font-[1000] uppercase italic tracking-tighter leading-none;
-    color: var(--color-text-main);
-    font-size: clamp(2rem, 8vw, 3.5rem); /* Auto-resize for mobile */
-    text-align: center;
+    @apply font-[1000] uppercase italic leading-[0.85] tracking-[-0.05em];
+    font-size: clamp(2.5rem, 10vw, 5rem);
+    filter: drop-shadow(0 0 10px rgba(255,255,255,0.1));
   }
 
-  /* Card System */
+  /* Card: Added 'Inner Glow' for premium glass effect */
   .gym-card {
     background-color: var(--color-card);
     border: 1px solid var(--color-border);
     border-radius: var(--radius-card);
-    backdrop-filter: blur(10px);
-    transition: all 0.3s ease;
+    backdrop-filter: blur(12px);
+    position: relative;
+    overflow: hidden;
+    transition: all 0.5s cubic-bezier(0.2, 1, 0.3, 1);
+  }
+
+  .gym-card::before {
+    content: "";
+    position: absolute;
+    top: 0; left: 0; right: 0; height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
   }
 
   .gym-card:hover {
-    border-color: var(--color-primary);
-    box-shadow: 0 10px 30px -10px var(--color-primary-glow);
-    transform: translateY(-4px);
+    border-color: rgba(34, 197, 94, 0.4);
+    background-color: rgba(255, 255, 255, 0.04);
+    box-shadow: 0 20px 40px -15px var(--color-primary-glow);
+    transform: translateY(-8px) scale(1.01);
   }
 
-  /* Button System */
+  /* Button: Dual shadow effect */
   .gym-button {
-    background-color: var(--color-primary);
+    @apply font-black uppercase italic px-10 py-5 flex items-center justify-center transition-all duration-300;
+    background: var(--color-primary);
     color: #000;
-    border-radius: var(--radius-button);
-    @apply font-black uppercase italic px-8 py-4 flex items-center justify-center transition-all active:scale-95;
-    box-shadow: 0 8px 25px -5px var(--color-primary-glow);
+    clip-path: polygon(5% 0%, 100% 0%, 95% 100%, 0% 100%); /* Aggressive Sharp Edge */
+    box-shadow: 4px 4px 0px 0px #166534, 0 10px 20px var(--color-primary-glow);
   }
 
-  /* Text Muted System */
-  .gym-text-muted {
-    color: var(--color-text-muted);
-    @apply text-sm leading-relaxed;
+  .gym-button:hover {
+    transform: translate(-2px, -2px);
+    box-shadow: 6px 6px 0px 0px #166534, 0 15px 30px var(--color-primary-glow);
+  }
+
+  .gym-button:active {
+    transform: translate(2px, 2px);
+    box-shadow: 0px 0px 0px 0px #166534;
   }
 }
 
-/* --- SCROLLBAR --- */
-::-webkit-scrollbar { width: 6px; }
-::-webkit-scrollbar-track { background: var(--color-background); }
-::-webkit-scrollbar-thumb { 
-  background: #222; 
-  border-radius: 10px; 
+/* Custom Highlight Color */
+::selection {
+  background: var(--color-primary);
+  color: #000;
 }
-::-webkit-scrollbar-thumb:hover { background: var(--color-primary); }
