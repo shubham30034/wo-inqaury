@@ -8,170 +8,106 @@ export default function Goals() {
   const whatsappNumber = "918279898128";
   const offer = getActiveOffer();
 
-  const buildLink = (goal) => {
-    let goalLine = "";
-
-    if (goal === "Fat Loss") {
-      goalLine = "My goal is fat loss and improving stamina.";
-    }
-
-    if (goal === "Muscle Gain") {
-      goalLine = "My goal is muscle gain and strength training.";
-    }
-
-    if (goal === "General Fitness") {
-      goalLine = "My goal is overall fitness and staying active.";
-    }
-
-    const msg = `Hi, I want to start the ${offer.trialDays}-day free trial.
-${goalLine}
-When is the best time to visit?`;
-
-    return `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(msg)}`;
-  };
-
   const goals = [
     {
       name: "Fat Loss",
       desc: "Lose fat, improve stamina, and feel lighter",
+      icon: "⚡",
+      color: "from-orange-500/20 to-red-500/20",
     },
     {
       name: "Muscle Gain",
       desc: "Build strength with structured training",
+      icon: "💪",
+      color: "from-emerald-500/20 to-teal-500/20",
     },
     {
       name: "General Fitness",
       desc: "Stay active, flexible, and injury-free",
+      icon: "🧘",
+      color: "from-blue-500/20 to-indigo-500/20",
     },
   ];
 
-  const labelFromGoal = (goal) =>
-    `goal_${goal.toLowerCase().replace(/\s+/g, "_")}_${offer.id}`;
+  const buildLink = (goal) => {
+    let goalLine = "";
+    if (goal === "Fat Loss") goalLine = "My goal is fat loss and improving stamina.";
+    if (goal === "Muscle Gain") goalLine = "My goal is muscle gain and strength training.";
+    if (goal === "General Fitness") goalLine = "My goal is overall fitness and staying active.";
 
-  const container = {
-    hidden: {},
-    show: {
-      transition: {
-        staggerChildren: 0.08,
-        delayChildren: 0.06,
-      },
-    },
-  };
-
-  const item = {
-    hidden: { opacity: 0, y: 18 },
-    show: {
-      opacity: 1,
-      y: 0,
-      transition: {
-        duration: 0.6,
-        ease: [0.16, 1, 0.3, 1],
-      },
-    },
+    const msg = `Hi, I want to start the ${offer.trialDays}-day free trial.\n${goalLine}\nWhen is the best time to visit?`;
+    return `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(msg)}`;
   };
 
   return (
-    <section className="py-10 sm:py-20">
-      <div className="mx-auto max-w-5xl px-4 sm:px-6">
-        <h2 className="text-lg sm:text-2xl font-semibold text-center">
-          What’s your main training goal?
-        </h2>
+    <section className="relative py-16 sm:py-24 bg-[#050505] overflow-hidden">
+      <div className="mx-auto max-w-6xl px-5 relative z-10">
+        
+        {/* Header - Scaled down for mobile */}
+        <div className="text-center mb-10 sm:mb-16">
+          <motion.h2 
+            initial={{ opacity: 0, y: -10 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            className="text-3xl sm:text-5xl font-[1000] text-white tracking-tighter uppercase italic"
+          >
+            Choose Your <span className="text-[#22c55e]">Mission</span>
+          </motion.h2>
+          <p className="mt-2 text-gray-500 text-[11px] sm:text-base max-w-[280px] sm:max-w-md mx-auto font-medium">
+            Tap a goal to get your personalized plan on WhatsApp instantly.
+          </p>
+        </div>
 
-        <p className="mt-2 text-sm text-center text-muted-foreground">
-          Selecting a goal opens WhatsApp instantly
-        </p>
-
-        <p className="mt-1 text-sm text-center text-muted-foreground">
-          This helps us respond faster and more accurately
-        </p>
-
-        {/* MOBILE */}
-        <motion.div
-          className="mt-6 space-y-3 sm:hidden"
-          variants={container}
-          initial="hidden"
-          whileInView="show"
-          viewport={{ once: true, amount: 0.25 }}
-        >
-          {goals.map((goal) => (
+        {/* Goals Grid - Smaller gap */}
+        <div className="grid gap-4 sm:gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          {goals.map((goal, index) => (
             <motion.a
               key={goal.name}
-              variants={item}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: index * 0.1 }}
               href={buildLink(goal.name)}
               target="_blank"
               rel="noopener noreferrer"
-              onClick={() =>
-                trackEvent("whatsapp_click", labelFromGoal(goal.name))
-              }
-              className="
-                flex items-center justify-between
-                w-full
-                px-4 py-4
-                rounded-xl
-                border border-black/5
-                bg-white
-                active:scale-[0.98]
-                transition
-              "
+              onClick={() => trackEvent("whatsapp_click", `goal_${goal.name.toLowerCase()}`)}
+              className="group relative flex flex-col p-6 sm:p-8 rounded-[1.5rem] sm:rounded-[2.5rem] border border-white/5 bg-white/[0.02] active:scale-95 transition-all duration-300 overflow-hidden"
             >
-              <div className="pr-3">
-                <p className="text-sm font-semibold text-gray-900">
+              {/* Animated Gradient */}
+              <div className={`absolute inset-0 bg-gradient-to-br ${goal.color} opacity-0 group-hover:opacity-100 transition-opacity duration-500`} />
+              
+              {/* Icon - Smaller on Mobile */}
+              <div className="relative z-10 w-12 h-12 sm:w-16 sm:h-16 rounded-xl sm:rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center text-2xl sm:text-3xl mb-4 sm:mb-8 transition-transform">
+                {goal.icon}
+              </div>
+
+              {/* Text - Scaled down */}
+              <div className="relative z-10">
+                <h3 className="text-lg sm:text-2xl font-black text-white uppercase tracking-tight mb-2">
                   {goal.name}
-                </p>
-                <p className="mt-1 text-xs text-gray-500">
+                </h3>
+                <p className="text-gray-500 text-xs sm:text-sm leading-relaxed mb-6 sm:mb-8 group-hover:text-gray-300">
                   {goal.desc}
                 </p>
               </div>
 
-              <span className="text-xl font-semibold text-green-600">→</span>
+              {/* Action - Fixed Green */}
+              <div className="relative z-10 mt-auto flex items-center gap-2">
+                <span className="text-[10px] font-black uppercase tracking-widest text-[#22c55e]">Select Goal</span>
+                <div className="h-[1px] flex-grow bg-[#22c55e] opacity-20" />
+                <span className="text-[#22c55e]">→</span>
+              </div>
             </motion.a>
           ))}
-        </motion.div>
+        </div>
 
-        {/* DESKTOP */}
-        <motion.div
-          className="hidden sm:grid mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-3"
-          variants={container}
-          initial="hidden"
-          whileInView="show"
-          viewport={{ once: true, amount: 0.25 }}
-        >
-          {goals.map((goal) => (
-            <motion.div key={goal.name} variants={item}>
-              <a
-                href={buildLink(goal.name)}
-                target="_blank"
-                rel="noopener noreferrer"
-                onClick={() =>
-                  trackEvent("whatsapp_click", labelFromGoal(goal.name))
-                }
-                className="
-                  flex h-full flex-col
-                  rounded-xl
-                  border border-border
-                  p-8
-                  bg-[var(--surface-card)]
-                  transition-transform duration-300
-                  hover:-translate-y-1 hover:shadow-md
-                "
-              >
-                <p className="text-lg font-medium">{goal.name}</p>
-                <p className="mt-2 text-sm text-muted-foreground">
-                  {goal.desc}
-                </p>
-
-                <p className="mt-auto pt-6 text-sm font-semibold text-[var(--action-primary)]">
-                  Continue →
-                </p>
-              </a>
-            </motion.div>
-          ))}
-        </motion.div>
-
-        {/* FOOTER NOTE */}
-        <p className="mt-6 sm:mt-8 text-xs text-center text-muted-foreground">
-          3-day free trial · No forms · No calls · WhatsApp only
-        </p>
+        {/* Trust Note - More compact */}
+        <div className="mt-12 flex flex-row flex-wrap justify-center gap-x-4 gap-y-2 text-[8px] sm:text-[10px] font-black uppercase tracking-[0.15em] text-gray-600 border-t border-white/5 pt-8">
+          <span>{offer.trialDays}-Day Trial</span>
+          <span>•</span>
+          <span>No Credit Card</span>
+          <span>•</span>
+          <span>Instant Approval</span>
+        </div>
       </div>
     </section>
   );

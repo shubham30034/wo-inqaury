@@ -1,208 +1,89 @@
 @import "tailwindcss";
 
-/* =================================================
-   GYM WHATSAPP INQUIRY — PREMIUM DESIGN SYSTEM
-   ================================================= */
-
-:root {
-  /* ================= BASE CANVAS ================= */
-  --background: radial-gradient(
-    1200px 600px at 50% -200px,
-    #dcfce7 0%,
-    #f8fafc 40%,
-    #f8fafc 100%
-  );
-  --foreground: #0f172a;
-
-  /* ================= BRAND ================= */
-  --primary: #16a34a;
-  --primary-foreground: #ffffff;
-
-  --secondary: #dcfce7;
-  --secondary-foreground: #14532d;
-
-  /* ================= TEXT ================= */
-  --text-primary: var(--foreground);
-  --text-muted: #6b7280;
-  --text-inverse: #ffffff;
-
-  /* ================= ACTIONS ================= */
-  --action-primary: var(--primary);
-  --action-primary-hover: #15803d;
-
-  /* ================= SURFACES ================= */
-  --surface-page: var(--background);
-  --surface-section: #f1f5f9;
-  --surface-card: #ffffff;
-  --surface-soft: #e5e7eb;
-
-  /* ================= BORDERS ================= */
-  --border: rgba(203,213,225,0.6);
-  --border-strong: #94a3b8;
-
-  /* ================= RADIUS ================= */
-  --radius-sm: 0.5rem;
-  --radius-md: 0.75rem;
-  --radius-lg: 1rem;
-  --radius-xl: 1.25rem;
-  --radius-pill: 9999px;
-
-  /* ================= SHADOWS ================= */
-  --shadow-sm:
-    0 1px 2px rgba(0,0,0,0.04),
-    0 12px 24px rgba(0,0,0,0.06);
-
-  --shadow-md:
-    0 10px 30px rgba(0,0,0,0.10);
-
-  --shadow-lg:
-    0 20px 60px rgba(0,0,0,0.14);
-
-  /* ================= CTA ================= */
-  --cta-bg: var(--action-primary);
-  --cta-text: var(--text-inverse);
-  --cta-hover: var(--action-primary-hover);
-  --cta-shadow:
-    0 0 0 0 rgba(22,163,74,0),
-    0 12px 40px rgba(22,163,74,0.45);
-
-  /* ================= FEEDBACK ================= */
-  --success: #16a34a;
-  --warning: #f59e0b;
-  --error: #dc2626;
-
-  /* ================= MOTION ================= */
-  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
-  --duration-fast: 140ms;
-  --duration-normal: 260ms;
-  --duration-slow: 420ms;
+@theme {
+  /* --- THEME COLORS --- */
+  --color-background: #050505;
+  --color-foreground: #ffffff;
+  
+  /* IronForge Signature Green */
+  --color-primary: #22c55e; 
+  
+  /* UI Radii */
+  --radius-xl: 1.5rem;
+  --radius-2xl: 2.5rem;
 }
 
-/* =================================================
-   TAILWIND THEME MAPPING
-   ================================================= */
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-
-  --color-primary: var(--primary);
-  --color-primary-foreground: var(--primary-foreground);
-
-  --color-secondary: var(--secondary);
-  --color-secondary-foreground: var(--secondary-foreground);
-
-  --color-muted: var(--surface-section);
-  --color-border: var(--border);
-
-  --font-sans: var(--font-geist-sans, system-ui, sans-serif);
-  --font-mono: var(--font-geist-mono, monospace);
-}
-
-/* =================================================
-   DARK MODE — SERIOUS / PREMIUM
-   ================================================= */
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: radial-gradient(
-      1200px 600px at 50% -200px,
-      rgba(22,163,74,0.15) 0%,
-      #020617 45%,
-      #020617 100%
-    );
-
-    --foreground: #f8fafc;
-
-    --surface-page: #020617;
-    --surface-section: #020617;
-    --surface-card: #020617;
-    --surface-soft: #020617;
-
-    --border: rgba(255,255,255,0.06);
-    --border-strong: rgba(255,255,255,0.12);
-
-    --text-muted: #9ca3af;
+/* --- GLOBAL STYLES --- */
+@layer base {
+  body {
+    background-color: #050505;
+    color: #ffffff;
+    font-feature-settings: "ss01", "ss02", "cv01", "cv02";
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
   }
 }
 
-/* =================================================
-   BASE RESET
-   ================================================= */
-body {
-  background: var(--surface-page);
-  color: var(--text-primary);
-  font-family: var(--font-sans);
-  -webkit-font-smoothing: antialiased;
-}
+/* --- CUSTOM UTILITIES --- */
+@layer components {
+  
+  /* High-Performance CTA Button */
+  .ui-cta {
+    display: flex;
+    items-center: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    background-color: #22c55e;
+    color: #000;
+    font-weight: 900;
+    border-radius: 1rem;
+    box-shadow: 0 10px 40px -10px rgba(34, 197, 94, 0.5);
+  }
 
-/* =================================================
-   TYPOGRAPHY AUTHORITY
-   ================================================= */
-h1, h2 {
-  letter-spacing: -0.025em;
-}
+  .ui-cta:hover {
+    transform: scale(1.02);
+    box-shadow: 0 15px 50px -10px rgba(34, 197, 94, 0.7);
+  }
 
-h1 {
-  font-weight: 800;
-}
+  .ui-cta:active {
+    transform: scale(0.95);
+  }
 
-h2 {
-  font-weight: 700;
-}
-
-/* =================================================
-   SYSTEM UI HELPERS
-   ================================================= */
-
-/* Card */
-.ui-card {
-  background: linear-gradient(
-    180deg,
-    #ffffff 0%,
-    #f8fafc 100%
-  );
-  border: 1px solid var(--border);
-  border-radius: var(--radius-xl);
-  box-shadow: var(--shadow-sm);
-  backdrop-filter: blur(6px);
-}
-
-/* Dark card override */
-@media (prefers-color-scheme: dark) {
-  .ui-card {
-    background: linear-gradient(
-      180deg,
-      rgba(255,255,255,0.04),
-      rgba(255,255,255,0.02)
-    );
+  /* Glassmorphism Card Style */
+  .ui-glass-card {
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    transition: all 0.5s ease;
+    background: linear-gradient(145deg, rgba(255,255,255,0.05) 0%, rgba(255,255,255,0.01) 100%);
   }
 }
 
-/* Section */
-.ui-section {
-  background: var(--surface-section);
+/* --- ANIMATIONS --- */
+@keyframes pulse-glow {
+  0%, 100% { opacity: 0.5; transform: scale(1); }
+  50% { opacity: 0.8; transform: scale(1.05); }
 }
 
-/* Primary CTA */
-.ui-cta {
-  background: var(--cta-bg);
-  color: var(--cta-text);
-  border-radius: var(--radius-pill);
-  box-shadow: var(--cta-shadow);
-  transition:
-    transform var(--duration-normal) var(--ease-out),
-    box-shadow var(--duration-normal) var(--ease-out),
-    background var(--duration-normal) var(--ease-out);
+.animate-glow {
+  animation: pulse-glow 4s ease-in-out infinite;
 }
 
-.ui-cta:hover {
-  background: var(--cta-hover);
-  transform: translateY(-2px) scale(1.01);
-  box-shadow:
-    0 0 0 6px rgba(22,163,74,0.15),
-    0 18px 50px rgba(22,163,74,0.55);
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
 }
 
-/* Muted text */
-.ui-muted {
-  color: var(--text-muted);
+::-webkit-scrollbar-track {
+  background: #0a0a0a;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #222;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #22c55e;
 }
